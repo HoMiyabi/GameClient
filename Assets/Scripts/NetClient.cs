@@ -47,5 +47,19 @@ public class NetClient
     {
         Debug.Log("与服务器断开");
     }
-    
+
+    /// <summary>
+    /// 关闭网络客户端
+    /// </summary>
+    public static void Close()
+    {
+        try
+        {
+            conn?.Close();
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
+        }
+    }
 }

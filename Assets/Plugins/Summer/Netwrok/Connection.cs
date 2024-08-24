@@ -58,7 +58,7 @@ namespace Summer.Network
 
             }
             Socket.Close();
-            OnDisconnected?.Invoke(this);
+            // OnDisconnected?.Invoke(this);
         }
 
 

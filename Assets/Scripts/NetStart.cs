@@ -116,4 +116,9 @@ public class NetStart : MonoBehaviour
         };
         NetClient.Send(request);
     }
+
+    private void OnApplicationQuit()
+    {
+        NetClient.Close();
+    }
 }
