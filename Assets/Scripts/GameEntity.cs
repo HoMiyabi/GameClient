@@ -22,6 +22,7 @@ public class GameEntity : MonoBehaviour
         var d = entity.Direction;
         position = new Vector3(p.X, p.Y, p.Z);
         direction = new Vector3(d.X, d.Y, d.Z);
-
+        position *= 0.001f;
+        direction *= 0.001f;
     }
 }

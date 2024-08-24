@@ -60,7 +60,10 @@ public class NetStart : MonoBehaviour
                 var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
                 hero = Instantiate(prefab);
-                var gameEntity = GetComponent<GameEntity>();
+
+                hero.name = $"Character Player {entity.Id}";
+
+                var gameEntity = hero.GetComponent<GameEntity>();
                 if (gameEntity != null)
                 {
                     gameEntity.SetData(entity);
@@ -80,13 +83,12 @@ public class NetStart : MonoBehaviour
         UnityMainThreadDispatcher.Instance().Enqueue(() =>
         {
             var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
-
-            foreach (var e in entities)
+            foreach (var entity in entities)
             {
-                Instantiate(
-                    prefab,
-                    new Vector3(e.Position.X, e.Position.Y, e.Position.Z),
-                    Quaternion.Euler(e.Direction.X, e.Direction.Y, e.Direction.Z));
+                var other = Instantiate(prefab);
+                other.name = $"Other Player {entity.Id}";
+                var gameEntity = other.GetComponent<GameEntity>();
+                gameEntity.SetData(entity);
             }
         });
     }
