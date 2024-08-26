@@ -4,9 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using PimDeWitte.UnityMainThreadDispatcher;
-using Proto;
 using UnityEngine;
 using UnityEngine.UI;
+using Proto;
 
 public class NetStart : MonoBehaviour
 {
@@ -19,29 +19,86 @@ public class NetStart : MonoBehaviour
     public InputField passwordInput;
 
     public Button playBtn;
+    public Button connectBtn;
+    public Text networkLatencyText;
 
     private GameObject hero; // 当前的角色
+
+    private Dictionary<int, GameObject> entityIdToGO = new();
 
     private void Awake()
     {
         playBtn.onClick.AddListener(EnterGame);
+        connectBtn.onClick.AddListener(Connect);
+    }
+
+    private void Connect()
+    {
+        NetClient.ConnectToServer(host, port);
+
+        // 心跳包任务，每秒1次
+        SendHeartBeatMessage().Forget();
     }
 
     void Start()
     {
-        NetClient.ConnectToServer(host, port);
-
-        MessageRouter.Instance.Subscribe<Proto.GameEnterResponse>(OnGameEnterResponse);
-        MessageRouter.Instance.Subscribe<Proto.SpaceCharactersEnterResponse>(OnSpaceCharactersEnterResponse);
+        MessageRouter.Instance.Subscribe<GameEnterResponse>(OnGameEnterResponse);
+        MessageRouter.Instance.Subscribe<SpaceCharactersEnterResponse>(OnSpaceCharactersEnterResponse);
+        MessageRouter.Instance.Subscribe<SpaceEntitySyncResponse>(OnSpaceEntitySyncResponse);
+        MessageRouter.Instance.Subscribe<HeartBeatResponse>(OnHeartBeatResponse);
     }
 
-    private async UniTaskVoid SyncRequestAsync()
+
+    // todo))
+    // 万一response对应的是上次的request，发了两次request才回复，时间有问题
+    // todo))
+    // 第一次延迟好大
+    private void OnHeartBeatResponse(Connection sender, HeartBeatResponse message)
     {
+        var now = DateTime.UtcNow;
+        var span = now - lastHeartBeatTime;
+        int dt = (int)Math.Round(span.TotalMilliseconds);
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            networkLatencyText.text = dt + " ms";
+            networkLatencyText.color = (dt < 100) ? Color.green : Color.red;
+        });
+    }
+
+    private DateTime lastHeartBeatTime = DateTime.MinValue;
+
+    private async UniTaskVoid SendHeartBeatMessage()
+    {
+        HeartBeatRequest request = new();
+
         while (true)
         {
-            SpaceEntitySyncRequest request = new();
-            await UniTask.WaitForSeconds(0.1f);
+            await UniTask.WaitForSeconds(1.0f);
+
+            lastHeartBeatTime = DateTime.UtcNow;
+            NetClient.Send(request);
         }
+    }
+
+    // 收到角色的同步信息
+    private void OnSpaceEntitySyncResponse(Connection sender, Proto.SpaceEntitySyncResponse message)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            var entity = message.EntitySync.Entity;
+            // Debug.Log("收到同步信息 " + entity);
+
+            if (entityIdToGO.TryGetValue(entity.Id, out var go))
+            {
+                var gameEntity = go.GetComponent<GameEntity>();
+                gameEntity.SetFromProto(entity);
+                gameEntity.SyncToTransform();
+            }
+            else
+            {
+                Debug.LogWarning("entityIdToGO.TryGetValue(entity.Id, out var go)");
+            }
+        });
     }
 
     // 加入游戏的响应结果 Entity肯定是自己
@@ -60,16 +117,19 @@ public class NetStart : MonoBehaviour
                 var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
                 hero = Instantiate(prefab);
+                entityIdToGO.Add(entity.Id, hero);
 
                 hero.name = $"Character Player {entity.Id}";
 
                 var gameEntity = hero.GetComponent<GameEntity>();
                 if (gameEntity != null)
                 {
-                    gameEntity.SetData(entity);
+                    gameEntity.isMine = true;
+                    gameEntity.SetFromProto(entity);
+                    gameEntity.SyncToTransform();
                 }
 
-                SyncRequestAsync().Forget();
+                hero.AddComponent<PlayerController>();
             });
         }
     }
@@ -86,9 +146,16 @@ public class NetStart : MonoBehaviour
             foreach (var entity in entities)
             {
                 var other = Instantiate(prefab);
+                entityIdToGO.Add(entity.Id, other);
+
                 other.name = $"Other Player {entity.Id}";
                 var gameEntity = other.GetComponent<GameEntity>();
-                gameEntity.SetData(entity);
+                if (gameEntity != null)
+                {
+                    gameEntity.isMine = false;
+                    gameEntity.SetFromProto(entity);
+                    gameEntity.SyncToTransform();
+                }
             }
         });
     }
@@ -110,7 +177,7 @@ public class NetStart : MonoBehaviour
             return;
         }
 
-        Proto.GameEnterRequest request = new()
+        GameEnterRequest request = new()
         {
             CharacterId = 0,
         };
