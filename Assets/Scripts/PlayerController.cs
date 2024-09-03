@@ -1,30 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float speed = 10;
+    public float speed = 10;
+
     private void Update()
     {
-        var move = new Vector3(0, 0, 0);
-        if (Input.GetKey(KeyCode.W))
-        {
-            move.x += 1;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            move.x -= 1;
-        }
+        var input = new Vector3(0, 0, 0);
         if (Input.GetKey(KeyCode.A))
         {
-            move.z += 1;
+            input.x -= 1;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            move.z -= 1;
+            input.x += 1;
         }
-        move.Normalize();
-        transform.position += speed * Time.deltaTime * move;
+        if (Input.GetKey(KeyCode.W))
+        {
+            input.z += 1;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            input.z -= 1;
+        }
+        if (input != Vector3.zero)
+        {
+            input.Normalize();
+
+            var tpCameraController = Camera.main.GetComponent<TPCameraController>();
+            var rot = Quaternion.Euler(0f, tpCameraController.yaw, 0f);
+            var move = rot * input;
+
+            transform.position += speed * Time.deltaTime * move;
+
+            // Rotate Player
+            Quaternion targetRot = rot * Quaternion.LookRotation(input, Vector3.up);
+            transform.DOKill();
+            transform.DORotateQuaternion(targetRot, 0.1f);
+        }
     }
 }

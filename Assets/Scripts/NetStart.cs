@@ -57,11 +57,11 @@ public class NetStart : MonoBehaviour
     {
         var now = DateTime.UtcNow;
         var span = now - lastHeartBeatTime;
-        int dt = (int)Math.Round(span.TotalMilliseconds);
+        int ms = (int)Math.Round(span.TotalMilliseconds);
         UnityMainThreadDispatcher.Instance().Enqueue(() =>
         {
-            networkLatencyText.text = dt + " ms";
-            networkLatencyText.color = (dt < 100) ? Color.green : Color.red;
+            networkLatencyText.text = $"{ms} ms";
+            networkLatencyText.color = (ms < 100) ? Color.green : Color.red;
         });
     }
 
@@ -113,6 +113,7 @@ public class NetStart : MonoBehaviour
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
             {
                 playBtn.gameObject.SetActive(false);
+                connectBtn.gameObject.SetActive(false);
 
                 var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
@@ -129,7 +130,8 @@ public class NetStart : MonoBehaviour
                     gameEntity.SyncToTransform();
                 }
 
-                hero.AddComponent<PlayerController>();
+                // hero.AddComponent<HeroController>();
+                Camera.main.GetComponent<TPCameraController>().follow = hero.transform;
             });
         }
     }

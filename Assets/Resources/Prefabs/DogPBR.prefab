@@ -1263,6 +1263,7 @@ GameObject:
   - component: {fileID: 8422892626600249584}
   - component: {fileID: 8422892626592999198}
   - component: {fileID: -3409252424517240234}
+  - component: {fileID: 3231801801686129619}
   m_Layer: 0
   m_Name: DogPBR
   m_TagString: Untagged
@@ -1323,6 +1324,19 @@ MonoBehaviour:
   entityId: 0
   position: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
+  isMine: 0
+--- !u!114 &3231801801686129619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8422892626600285392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7422c0a6423519a409230963da59fd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8422892626600285394
 GameObject:
   m_ObjectHideFlags: 0

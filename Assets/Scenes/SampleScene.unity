@@ -471,6 +471,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -545,7 +546,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.45524794, y: 0.54152906, z: -0.45796975, w: 0.538293}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 497.51663, y: 11.49262, z: 499.95126}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -596,6 +597,32 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e23b0fe5f3294cadbc106172de07e94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  follow: {fileID: 0}
+  mouseSensitivity: 40
+  pitchSensitivity: 0.022
+  yawSensitivity: 0.022
+  wheelSensitivity: 0.2
+  distance: 5
+  minDistance: 2
+  maxDistance: 8
+  offset: {x: 0, y: 1, z: 0}
+  hitGoOutDistance: 0.1
+  pitch: 0
+  minPitch: -85
+  maxPitch: 85
+  yaw: 0
 --- !u!1 &367530774
 GameObject:
   m_ObjectHideFlags: 0
