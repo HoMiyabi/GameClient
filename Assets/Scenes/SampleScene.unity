@@ -620,8 +620,8 @@ MonoBehaviour:
   offset: {x: 0, y: 1, z: 0}
   hitGoOutDistance: 0.1
   pitch: 0
-  minPitch: -85
-  maxPitch: 85
+  minPitch: -70
+  maxPitch: 70
   yaw: 0
 --- !u!1 &367530774
 GameObject:

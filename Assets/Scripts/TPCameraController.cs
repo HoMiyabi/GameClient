@@ -24,45 +24,45 @@ public class TPCameraController : MonoBehaviour
     public float maxPitch = 85f;
     public float yaw = 0f; // 偏航角
 
+    private Camera _camera;
+    private Vector3[] nearCorners;
+
     private void Start()
     {
         transform.rotation = Quaternion.identity;
         pitch = 0f;
         yaw = 0f;
+
+        _camera = GetComponent<Camera>();
+
+        nearCorners = new Vector3[4];
+        _camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), _camera.nearClipPlane,
+            Camera.MonoOrStereoscopicEye.Mono, nearCorners);
     }
 
     public void LateUpdate()
     {
         // Pitch
         float dy = Input.GetAxis("Mouse Y");
-        if (dy != 0f)
-        {
-            pitch += -dy * pitchSensitivity * mouseSensitivity;
-            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
-        }
+        pitch += -dy * pitchSensitivity * mouseSensitivity;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         // Yaw
         float dx = Input.GetAxis("Mouse X");
-        if (dx != 0f)
+        yaw += dx * yawSensitivity * mouseSensitivity;
+        while (yaw < -180f)
         {
-            yaw += dx * yawSensitivity * mouseSensitivity;
-            while (yaw < -180f)
-            {
-                yaw += 360f;
-            }
-            while (yaw > 180f)
-            {
-                yaw -= 360f;
-            }
+            yaw += 360f;
+        }
+        while (yaw > 180f)
+        {
+            yaw -= 360f;
         }
 
         // Distance
         float dWheel = Input.mouseScrollDelta.y;
-        if (dWheel != 0f)
-        {
-            distance += -dWheel * wheelSensitivity;
-            distance = Mathf.Clamp(distance, minDistance, maxDistance);
-        }
+        distance += -dWheel * wheelSensitivity;
+        distance = Mathf.Clamp(distance, minDistance, maxDistance);
 
         // Rotation
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
@@ -71,13 +71,30 @@ public class TPCameraController : MonoBehaviour
         if (follow != null)
         {
             var expectedPosition = follow.position + offset - transform.forward * distance;
-            if (Physics.Linecast(follow.position + offset, expectedPosition, out RaycastHit hit))
+            transform.position = expectedPosition;
+
+            float minHitDistance = float.PositiveInfinity;
+            foreach (Vector3 nearCorner in nearCorners)
             {
-                transform.position = hit.point + hit.normal * hitGoOutDistance;
+                var wsNearCorner = transform.TransformPoint(nearCorner);
+                Vector3 startOffset = wsNearCorner - transform.position - transform.forward * _camera.nearClipPlane;
+                Vector3 startPosition = follow.position + offset + startOffset;
+                Debug.DrawLine(startPosition, wsNearCorner, Color.red);
+                if (Physics.Linecast(startPosition, wsNearCorner, out var hit))
+                {
+                    minHitDistance = Mathf.Min(minHitDistance, hit.distance);
+                }
             }
-            else
+
+            // Debug.DrawLine(follow.position + offset, expectedPosition, Color.red);
+            // if (Physics.Linecast(follow.position + offset, expectedPosition, out hit))
+            // {
+            //     minHitDistance = Mathf.Min(minHitDistance, hit.distance);
+            // }
+
+            if (!float.IsPositiveInfinity(minHitDistance))
             {
-                transform.position = expectedPosition;
+                transform.position = follow.position + offset - transform.forward * (minHitDistance + _camera.nearClipPlane);
             }
         }
     }
