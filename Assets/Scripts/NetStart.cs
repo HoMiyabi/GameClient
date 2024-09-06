@@ -130,7 +130,8 @@ public class NetStart : MonoBehaviour
                     gameEntity.SyncToTransform();
                 }
 
-                // hero.AddComponent<HeroController>();
+                hero.AddComponent<PlayerController>();
+
                 Camera.main.GetComponent<TPCameraController>().follow = hero.transform;
             });
         }
