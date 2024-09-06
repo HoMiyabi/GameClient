@@ -2,26 +2,25 @@
 
 public class TPCameraController : MonoBehaviour
 {
+    [Header("跟随对象")]
     public Transform follow;
+    public Vector3 offset;
 
     [Header("灵敏度")]
-    public float mouseSensitivity = 1f;
+    public float mouseSensitivity = 40f;
     public float pitchSensitivity = 0.022f;
     public float yawSensitivity = 0.022f;
-    public float wheelSensitivity = 0.1f;
+    public float wheelSensitivity = 0.2f;
 
     [Header("距离")]
     public float distance = 5f;
     public float minDistance = 2f;
     public float maxDistance = 8f;
 
-    public Vector3 offset;
-    public float hitGoOutDistance = 0f;
-
     [Header("旋转")]
     public float pitch = 0f; // 俯仰角
-    public float minPitch = -85f;
-    public float maxPitch = 85f;
+    public float minPitch = -70f;
+    public float maxPitch = 70f;
     public float yaw = 0f; // 偏航角
 
     private Camera _camera;
@@ -33,9 +32,9 @@ public class TPCameraController : MonoBehaviour
         pitch = 0f;
         yaw = 0f;
 
-        _camera = GetComponent<Camera>();
-
         nearCorners = new Vector3[4];
+
+        _camera = GetComponent<Camera>();
         _camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), _camera.nearClipPlane,
             Camera.MonoOrStereoscopicEye.Mono, nearCorners);
     }
@@ -77,8 +76,8 @@ public class TPCameraController : MonoBehaviour
             foreach (Vector3 nearCorner in nearCorners)
             {
                 var wsNearCorner = transform.TransformPoint(nearCorner);
-                Vector3 startOffset = wsNearCorner - transform.position - transform.forward * _camera.nearClipPlane;
-                Vector3 startPosition = follow.position + offset + startOffset;
+                Vector3 cornerOffset = wsNearCorner - transform.position - transform.forward * _camera.nearClipPlane;
+                Vector3 startPosition = follow.position + offset + cornerOffset;
                 Debug.DrawLine(startPosition, wsNearCorner, Color.red);
                 if (Physics.Linecast(startPosition, wsNearCorner, out var hit))
                 {
