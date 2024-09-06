@@ -26,6 +26,8 @@ public class TPCameraController : MonoBehaviour
     private Camera _camera;
     private Vector3[] nearCorners;
 
+    private bool allowMouse = true;
+
     private void Start()
     {
         transform.rotation = Quaternion.identity;
@@ -41,13 +43,26 @@ public class TPCameraController : MonoBehaviour
 
     public void LateUpdate()
     {
+        // Input
+        float dy = 0f;
+        float dx = 0f;
+        float dWheel = 0f;
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            allowMouse = !allowMouse;
+        }
+        if (allowMouse)
+        {
+            dy = Input.GetAxis("Mouse Y");
+            dx = Input.GetAxis("Mouse X");
+            dWheel = Input.mouseScrollDelta.y;
+        }
+
         // Pitch
-        float dy = Input.GetAxis("Mouse Y");
         pitch += -dy * pitchSensitivity * mouseSensitivity;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         // Yaw
-        float dx = Input.GetAxis("Mouse X");
         yaw += dx * yawSensitivity * mouseSensitivity;
         while (yaw < -180f)
         {
@@ -59,7 +74,6 @@ public class TPCameraController : MonoBehaviour
         }
 
         // Distance
-        float dWheel = Input.mouseScrollDelta.y;
         distance += -dWheel * wheelSensitivity;
         distance = Mathf.Clamp(distance, minDistance, maxDistance);
 
