@@ -614,10 +614,12 @@ MonoBehaviour:
   mouseSensitivity: 8
   pitchSensitivity: 0.022
   yawSensitivity: 0.022
-  wheelSensitivity: 0.01
-  distance: 4.4
+  zoomSensitivity: 0.01
+  targetDistance: 5.6
+  curDistance: 5.6
   minDistance: 2
-  maxDistance: 8
+  maxDistance: 9.2
+  zoomDuration: 0.1
   pitch: 0
   minPitch: -70
   maxPitch: 70

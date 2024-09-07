@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10;
+    public float speed = 8;
 
     private HeroAnimations heroAnimations;
 
