@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using UnityEngine;
 
 public class TPCameraController : MonoBehaviour
 {
@@ -7,15 +10,18 @@ public class TPCameraController : MonoBehaviour
     public Vector3 offset;
 
     [Header("灵敏度")]
-    public float mouseSensitivity = 40f;
+    public float mouseSensitivity = 8f;
     public float pitchSensitivity = 0.022f;
     public float yawSensitivity = 0.022f;
-    public float wheelSensitivity = 0.2f;
+    public float zoomSensitivity = 0.01f;
 
     [Header("距离")]
-    public float distance = 5f;
+    public float targetDistance = 4.4f;
+    public float curDistance = 4.4f;
     public float minDistance = 2f;
     public float maxDistance = 8f;
+    public float zoomDuration = 0.1f;
+    private TweenerCore<float, float, FloatOptions> zoomTweener;
 
     [Header("旋转")]
     public float pitch = 0f; // 俯仰角
@@ -26,7 +32,9 @@ public class TPCameraController : MonoBehaviour
     private Camera _camera;
     private Vector3[] nearCorners;
 
-    private bool allowMouse = true;
+    private bool freeMouse = true;
+
+    private InputControls input;
 
     private void Start()
     {
@@ -39,24 +47,25 @@ public class TPCameraController : MonoBehaviour
         _camera = GetComponent<Camera>();
         _camera.CalculateFrustumCorners(new Rect(0, 0, 1, 1), _camera.nearClipPlane,
             Camera.MonoOrStereoscopicEye.Mono, nearCorners);
+
+        input = new InputControls();
+        input.Player.Enable();
     }
 
     public void LateUpdate()
     {
         // Input
-        float dy = 0f;
-        float dx = 0f;
-        float dWheel = 0f;
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        float dZoom = 0f;
+        Vector2 dRot = Vector2.zero;
+
+        freeMouse = input.Player.FreeMouse.IsPressed();
+        if (!freeMouse)
         {
-            allowMouse = !allowMouse;
+            dRot = input.Player.Rotate.ReadValue<Vector2>();
+            dZoom = input.Player.Zoom.ReadValue<float>();
         }
-        if (allowMouse)
-        {
-            dy = Input.GetAxis("Mouse Y");
-            dx = Input.GetAxis("Mouse X");
-            dWheel = Input.mouseScrollDelta.y;
-        }
+        float dy = dRot.y;
+        float dx = dRot.x;
 
         // Pitch
         pitch += -dy * pitchSensitivity * mouseSensitivity;
@@ -74,8 +83,16 @@ public class TPCameraController : MonoBehaviour
         }
 
         // Distance
-        distance += -dWheel * wheelSensitivity;
-        distance = Mathf.Clamp(distance, minDistance, maxDistance);
+        float newTargetDistance;
+        newTargetDistance = targetDistance - dZoom * zoomSensitivity;
+        newTargetDistance = Mathf.Clamp(newTargetDistance, minDistance, maxDistance);
+        if (Mathf.Abs(newTargetDistance - targetDistance) > Mathf.Epsilon)
+        {
+            targetDistance = newTargetDistance;
+            zoomTweener?.Kill();
+            zoomTweener = DOTween.To(() => curDistance, x => curDistance = x,
+                targetDistance, zoomDuration);
+        }
 
         // Rotation
         transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
@@ -83,7 +100,7 @@ public class TPCameraController : MonoBehaviour
         // Position
         if (follow != null)
         {
-            var expectedPosition = follow.position + offset - transform.forward * distance;
+            var expectedPosition = follow.position + offset - transform.forward * curDistance;
             transform.position = expectedPosition;
 
             float minHitDistance = float.PositiveInfinity;
