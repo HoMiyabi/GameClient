@@ -46,6 +46,27 @@ public class NetStart : MonoBehaviour
         MessageRouter.Instance.Subscribe<SpaceCharactersEnterResponse>(OnSpaceCharactersEnterResponse);
         MessageRouter.Instance.Subscribe<SpaceEntitySyncResponse>(OnSpaceEntitySyncResponse);
         MessageRouter.Instance.Subscribe<HeartBeatResponse>(OnHeartBeatResponse);
+        MessageRouter.Instance.Subscribe<SpaceCharacterLeaveResponse>(OnSpaceCharacterLeaveResponse);
+    }
+    /// <summary>
+    /// 有角色离开地图
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="message"></param>
+    private void OnSpaceCharacterLeaveResponse(Connection sender, SpaceCharacterLeaveResponse message)
+    {
+        int entityId = message.EntityId;
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            if (entityIdToGO.Remove(entityId, out var go))
+            {
+                Destroy(go);
+            }
+            else
+            {
+                Debug.LogWarning("entityIdToGO.Remove(entityId, out var go)");
+            }
+        });
     }
 
 
@@ -81,64 +102,64 @@ public class NetStart : MonoBehaviour
     }
 
     // 收到角色的同步信息
-    private void OnSpaceEntitySyncResponse(Connection sender, Proto.SpaceEntitySyncResponse message)
+    private void OnSpaceEntitySyncResponse(Connection sender, SpaceEntitySyncResponse message)
     {
+        var entity = message.EntitySync.Entity;
         UnityMainThreadDispatcher.Instance().Enqueue(() =>
         {
-            var entity = message.EntitySync.Entity;
-            // Debug.Log("收到同步信息 " + entity);
-
             if (entityIdToGO.TryGetValue(entity.Id, out var go))
             {
                 var gameEntity = go.GetComponent<GameEntity>();
                 gameEntity.SetFromProto(entity);
-                gameEntity.SyncToTransform();
             }
             else
             {
-                Debug.LogWarning("entityIdToGO.TryGetValue(entity.Id, out var go)");
+                Debug.LogWarning($"entityIdToGO.TryGetValue(entity.Id, out var go) id {entity.Id}");
             }
         });
     }
 
     // 加入游戏的响应结果 Entity肯定是自己
-    private void OnGameEnterResponse(Connection sender, Proto.GameEnterResponse message)
+    private void OnGameEnterResponse(Connection sender, GameEnterResponse message)
     {
         Debug.Log("加入游戏的响应结果:" + message.Success);
-        if (message.Success)
+        if (!message.Success)
         {
-            Debug.Log("角色信息:" + message.Entity);
-
-            var entity = message.Entity;
-            UnityMainThreadDispatcher.Instance().Enqueue(() =>
-            {
-                playBtn.gameObject.SetActive(false);
-                connectBtn.gameObject.SetActive(false);
-
-                var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
-
-                hero = Instantiate(prefab);
-                entityIdToGO.Add(entity.Id, hero);
-
-                hero.name = $"Character Player {entity.Id}";
-
-                var gameEntity = hero.GetComponent<GameEntity>();
-                if (gameEntity != null)
-                {
-                    gameEntity.isMine = true;
-                    gameEntity.SetFromProto(entity);
-                    gameEntity.SyncToTransform();
-                }
-
-                hero.AddComponent<PlayerController>();
-
-                Camera.main.GetComponent<TPCameraController>().follow = hero.transform;
-            });
+            Debug.LogWarning("进入失败");
         }
+
+        Debug.Log("角色信息:" + message.Entity);
+
+        var entity = message.Entity;
+        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        {
+            playBtn.gameObject.SetActive(false);
+            connectBtn.gameObject.SetActive(false);
+
+            var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
+
+            hero = Instantiate(prefab);
+            entityIdToGO.Add(entity.Id, hero);
+
+            hero.name = $"Character Player {entity.Id}";
+
+            var gameEntity = hero.GetComponent<GameEntity>();
+            if (gameEntity != null)
+            {
+                gameEntity.isMine = true;
+                gameEntity.SetFromProto(entity);
+                gameEntity.SyncToTransform();
+                gameEntity.SyncRequestAsync().Forget();
+            }
+
+            hero.AddComponent<PlayerController>();
+
+            Camera.main.GetComponent<TPCameraController>().follow = hero.transform;
+        });
     }
 
     // 当有角色进入地图的通知 肯定不是自己
-    private void OnSpaceCharactersEnterResponse(Connection conn, Proto.SpaceCharactersEnterResponse message)
+    private void OnSpaceCharactersEnterResponse(Connection conn, SpaceCharactersEnterResponse message)
     {
         Debug.Log("角色进入地图 " + message);
         var entities = message.EntityList;

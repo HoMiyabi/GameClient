@@ -12,12 +12,7 @@ public class GameEntity : MonoBehaviour
     public Vector3 direction;
     public bool isMine; // 是否自己控制的角色
 
-    private void Start()
-    {
-        SyncRequestAsync().Forget();
-    }
-
-    private async UniTaskVoid SyncRequestAsync()
+    public async UniTaskVoid SyncRequestAsync()
     {
         var request = new Proto.SpaceEntitySyncRequest()
         {
@@ -33,10 +28,15 @@ public class GameEntity : MonoBehaviour
 
         while (true)
         {
-            await UniTask.WaitForSeconds(0.1f);
+            await UniTask.WaitForSeconds(0.2f);
 
-            request.EntitySync.Entity.SetFromNative(this);
-            NetClient.Send(request);
+            if (transform.hasChanged)
+            {
+                request.EntitySync.Entity.SetFromNative(this);
+                print(request);
+                NetClient.Send(request);
+                transform.hasChanged = false;
+            }
         }
     }
 
@@ -50,8 +50,14 @@ public class GameEntity : MonoBehaviour
         else
         {
             // 其他角色
-            SyncToTransform();
+            SyncToTransformLerp();
         }
+    }
+
+    public void SyncToTransformLerp()
+    {
+        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Euler(direction);
     }
 
     public void SyncToTransform()
