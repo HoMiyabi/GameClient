@@ -35,7 +35,7 @@ public class HeroAnimations : MonoBehaviour
 
     public void PlayIdle()
     {
-        if (state == HState.Attack)
+        if (state is HState.Attack or HState.Gethit)
         {
             return;
         }
