@@ -28,12 +28,12 @@ public class GameEntity : MonoBehaviour
 
         while (true)
         {
-            await UniTask.WaitForSeconds(0.2f);
+            await UniTask.WaitForSeconds(0.1f);
 
             if (transform.hasChanged)
             {
                 request.EntitySync.Entity.SetFromNative(this);
-                print(request);
+                // print(request);
                 NetClient.Send(request);
                 transform.hasChanged = false;
             }
@@ -57,7 +57,9 @@ public class GameEntity : MonoBehaviour
     public void SyncToTransformLerp()
     {
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 5f);
-        transform.rotation = Quaternion.Euler(direction);
+
+        Quaternion targetRotation = Quaternion.Euler(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
     }
 
     public void SyncToTransform()

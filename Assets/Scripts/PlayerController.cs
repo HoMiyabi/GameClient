@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 8;
+    public float normalSpeed = 8;
+    public float speedUpSpeed = 12;
 
     private HeroAnimations heroAnimations;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         // Input
+        bool bSpeedUp = input.Player.SpeedUp.IsPressed();
         bool bAttack = input.Player.Attack.IsPressed();
         Vector2 inputMove = input.Player.Move.ReadValue<Vector2>();
         Vector3 localMove = new Vector3(inputMove.x, 0f, inputMove.y);
@@ -28,6 +31,12 @@ public class PlayerController : MonoBehaviour
         if (bAttack)
         {
             heroAnimations.PlayAttack1();
+        }
+
+        float targetSpeed = normalSpeed;
+        if (bSpeedUp)
+        {
+            targetSpeed = speedUpSpeed;
         }
 
         if (localMove != Vector3.zero)
@@ -39,7 +48,7 @@ public class PlayerController : MonoBehaviour
             heroAnimations.PlayRun();
             if (heroAnimations.state == HeroAnimations.HState.Run)
             {
-                transform.position += speed * Time.deltaTime * wsMove;
+                transform.position += targetSpeed * Time.deltaTime * wsMove;
             }
 
             // Rotate Player

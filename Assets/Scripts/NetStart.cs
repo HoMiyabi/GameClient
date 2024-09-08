@@ -26,6 +26,8 @@ public class NetStart : MonoBehaviour
 
     private Dictionary<int, GameObject> entityIdToGO = new();
 
+    public Transform canvas;
+
     private void Awake()
     {
         playBtn.onClick.AddListener(EnterGame);
@@ -47,7 +49,11 @@ public class NetStart : MonoBehaviour
         MessageRouter.Instance.Subscribe<SpaceEntitySyncResponse>(OnSpaceEntitySyncResponse);
         MessageRouter.Instance.Subscribe<HeartBeatResponse>(OnHeartBeatResponse);
         MessageRouter.Instance.Subscribe<SpaceCharacterLeaveResponse>(OnSpaceCharacterLeaveResponse);
+
+        var loginPanel = Resources.Load<GameObject>("Prefabs/UI/LoginPanel");
+        Instantiate(loginPanel, canvas);
     }
+
     /// <summary>
     /// 有角色离开地图
     /// </summary>
