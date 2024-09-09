@@ -52,6 +52,7 @@ public class NetStart : MonoBehaviour
 
         var loginPanel = Resources.Load<GameObject>("Prefabs/UI/LoginPanel");
         Instantiate(loginPanel, canvas);
+        Connect();
     }
 
     /// <summary>
