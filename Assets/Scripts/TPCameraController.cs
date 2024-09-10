@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
@@ -36,7 +37,7 @@ public class TPCameraController : MonoBehaviour
 
     private InputControls input;
 
-    private void Start()
+    private void Awake()
     {
         transform.rotation = Quaternion.identity;
         pitch = 0f;
@@ -49,8 +50,18 @@ public class TPCameraController : MonoBehaviour
             Camera.MonoOrStereoscopicEye.Mono, nearCorners);
 
         input = new InputControls();
-        input.Player.Enable();
     }
+
+    private void OnEnable()
+    {
+        input.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+    }
+
 
     public void LateUpdate()
     {

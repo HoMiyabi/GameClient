@@ -97,6 +97,10 @@ namespace Kirara
             var canvasGroup = box.GetComponent<CanvasGroup>();
             canvasGroup.alpha = 0f;
             canvasGroup.DOFade(1f, 0.1f);
+
+            float curAlpha = bgMask.color.a;
+            bgMask.color = new Color(bgMask.color.r, bgMask.color.g, bgMask.color.b, 0f);
+            bgMask.DOFade(curAlpha, 0.1f);
         }
 
         public void Hide() => gameObject.SetActive(false);
@@ -108,6 +112,7 @@ namespace Kirara
             var s = DOTween.Sequence();
             s.Insert(0, box.DOScale(0.7f, 0.1f));
             s.Insert(0, canvasGroup.DOFade(0f, 0.1f));
+            s.Insert(0, bgMask.DOFade(0f, 0.1f));
             s.onComplete += () =>
             {
                 Destroy(gameObject);

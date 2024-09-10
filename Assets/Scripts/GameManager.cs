@@ -1,15 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Kirara;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
     public Dropdown dropdown;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         dropdown.ClearOptions();
         dropdown.AddOptions(new List<string>() {"1280 x 720", "800 x 600", "全屏"});
         dropdown.onValueChanged.AddListener(value =>

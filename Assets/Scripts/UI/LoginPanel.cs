@@ -2,10 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Kirara;
-using PimDeWitte.UnityMainThreadDispatcher;
 using Proto;
 using Summer.Network;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoginPanel : MonoBehaviour
@@ -22,17 +22,24 @@ public class LoginPanel : MonoBehaviour
 
     private void OnUserLoginResponse(Connection sender, UserLoginResponse message)
     {
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             Debug.Log(message);
 
-            var dialog = UIDialog.New("系统消息", message.Message);
-            dialog.AddButton(UIButton.New("确定", () =>
-                {
-                    print("确定");
-                    dialog.Dismiss();
-                }).transform)
-                .Show();
+            if (message.Success)
+            {
+                SceneManager.LoadScene("ChooseCharacterScene");
+            }
+            else
+            {
+                var dialog = UIDialog.New("系统消息", message.Message);
+                dialog.AddButton(UIButton.New("确定", () =>
+                    {
+                        print("确定");
+                        dialog.Dismiss();
+                    }).transform)
+                    .Show();
+            }
         });
     }
 

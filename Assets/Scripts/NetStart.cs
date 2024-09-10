@@ -3,13 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
-using PimDeWitte.UnityMainThreadDispatcher;
+using Kirara;
 using UnityEngine;
 using UnityEngine.UI;
 using Proto;
+using UnityEngine.SceneManagement;
 
-public class NetStart : MonoBehaviour
+public class NetStart : MonoSingleton<NetStart>
 {
+    public List<GameObject> keepAlive;
+
     [Header("服务器信息")]
     public string host = "127.0.0.1";
     public int port = 32510;
@@ -28,10 +31,17 @@ public class NetStart : MonoBehaviour
 
     public Transform canvas;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         playBtn.onClick.AddListener(EnterGame);
         connectBtn.onClick.AddListener(Connect);
+
+        foreach (GameObject go in keepAlive)
+        {
+            DontDestroyOnLoad(go);
+        }
     }
 
     private void Connect()
@@ -50,8 +60,8 @@ public class NetStart : MonoBehaviour
         MessageRouter.Instance.Subscribe<HeartBeatResponse>(OnHeartBeatResponse);
         MessageRouter.Instance.Subscribe<SpaceCharacterLeaveResponse>(OnSpaceCharacterLeaveResponse);
 
-        var loginPanel = Resources.Load<GameObject>("Prefabs/UI/LoginPanel");
-        Instantiate(loginPanel, canvas);
+        SceneManager.LoadScene("LoginScene");
+
         Connect();
     }
 
@@ -63,7 +73,7 @@ public class NetStart : MonoBehaviour
     private void OnSpaceCharacterLeaveResponse(Connection sender, SpaceCharacterLeaveResponse message)
     {
         int entityId = message.EntityId;
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             if (entityIdToGO.Remove(entityId, out var go))
             {
@@ -86,7 +96,7 @@ public class NetStart : MonoBehaviour
         var now = DateTime.UtcNow;
         var span = now - lastHeartBeatTime;
         int ms = (int)Math.Round(span.TotalMilliseconds);
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             networkLatencyText.text = $"{ms} ms";
             networkLatencyText.color = (ms < 100) ? Color.green : Color.red;
@@ -112,7 +122,7 @@ public class NetStart : MonoBehaviour
     private void OnSpaceEntitySyncResponse(Connection sender, SpaceEntitySyncResponse message)
     {
         var entity = message.EntitySync.Entity;
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             if (entityIdToGO.TryGetValue(entity.Id, out var go))
             {
@@ -138,7 +148,7 @@ public class NetStart : MonoBehaviour
         Debug.Log("角色信息:" + message.Entity);
 
         var entity = message.Entity;
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             playBtn.gameObject.SetActive(false);
             connectBtn.gameObject.SetActive(false);
@@ -171,7 +181,7 @@ public class NetStart : MonoBehaviour
         Debug.Log("角色进入地图 " + message);
         var entities = message.EntityList;
 
-        UnityMainThreadDispatcher.Instance().Enqueue(() =>
+        MainThread.Instance.Enqueue(() =>
         {
             var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
             foreach (var entity in entities)

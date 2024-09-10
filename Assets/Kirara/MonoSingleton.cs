@@ -13,6 +13,10 @@ namespace Kirara
                 Instance = this as T;
                 DontDestroyOnLoad(gameObject);
             }
+            else
+            {
+                Debug.LogWarning($"存在重复的{typeof(T).Name}");
+            }
         }
     }
 }
