@@ -90,16 +90,25 @@ namespace Kirara
         public void Show()
         {
             gameObject.SetActive(true);
-            box.localScale = new Vector3(0.8f, 0.8f, 0.8f);
-            box.DOScale(1f, 0.05f);
+
+            box.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+            box.DOScale(1f, 0.1f);
+
+            var canvasGroup = box.GetComponent<CanvasGroup>();
+            canvasGroup.alpha = 0f;
+            canvasGroup.DOFade(1f, 0.1f);
         }
 
         public void Hide() => gameObject.SetActive(false);
 
         public void Dismiss()
         {
-            var tweenerCore = box.DOScale(0.8f, 0.05f);
-            tweenerCore.onComplete = () =>
+            var canvasGroup = box.GetComponent<CanvasGroup>();
+
+            var s = DOTween.Sequence();
+            s.Insert(0, box.DOScale(0.7f, 0.1f));
+            s.Insert(0, canvasGroup.DOFade(0f, 0.1f));
+            s.onComplete += () =>
             {
                 Destroy(gameObject);
             };

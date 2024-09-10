@@ -26,13 +26,8 @@ public class LoginPanel : MonoBehaviour
         {
             Debug.Log(message);
 
-            var dialog = UIDialog.New("登录结果", message.Message);
-            dialog.AddButton(UIButton.New("取消", () =>
-                {
-                    print("取消");
-                    dialog.Dismiss();
-                }).transform)
-                .AddButton(UIButton.New("确定", () =>
+            var dialog = UIDialog.New("系统消息", message.Message);
+            dialog.AddButton(UIButton.New("确定", () =>
                 {
                     print("确定");
                     dialog.Dismiss();
