@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoginPanel : MonoBehaviour
+public class LoginPanel : UIBase
 {
     public InputField usernameInput;
     public InputField passwordInput;
@@ -28,16 +28,13 @@ public class LoginPanel : MonoBehaviour
 
             if (message.Success)
             {
-                SceneManager.LoadScene("ChooseCharacterScene");
+                SceneManager.LoadScene("RoleListScene");
             }
             else
             {
                 var dialog = UIDialog.New("系统消息", message.Message);
-                dialog.AddButton(UIButton.New("确定", () =>
-                    {
-                        print("确定");
-                        dialog.Dismiss();
-                    }).transform)
+                dialog.Open();
+                dialog.AddButton(UIButton.New("哦", () =>dialog.Close()).transform)
                     .Show();
             }
         });

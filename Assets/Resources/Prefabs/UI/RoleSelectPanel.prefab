@@ -1124,7 +1124,7 @@ MonoBehaviour:
   textLevelContent: {fileID: 1918250984988243783}
   textJobContent: {fileID: 2630372841084519834}
   textNameContent: {fileID: 6670134427998222646}
-  btnRemoveRole: {fileID: 4474288611399189916}
+  btnDeleteRole: {fileID: 4474288611399189916}
   btnCreateRole: {fileID: 4852293939314434654}
   traAllRole: {fileID: 4134518520750522811}
   choiceGroup: {fileID: 3706520456100971642}
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   - fieldName: textNameContent
     comTypeFullName: UnityEngine.UI.Text
     com: {fileID: 6670134427998222646}
-  - fieldName: btnRemoveRole
+  - fieldName: btnDeleteRole
     comTypeFullName: UnityEngine.UI.Button
     com: {fileID: 4474288611399189916}
   - fieldName: btnCreateRole
@@ -1414,7 +1414,7 @@ GameObject:
   - component: {fileID: 5366227234396426742}
   - component: {fileID: 4474288611399189916}
   m_Layer: 5
-  m_Name: btnRemoveRole
+  m_Name: btnDeleteRole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

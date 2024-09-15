@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Threading;
 using Common;
+using UnityEngine;
 
 namespace Summer.Network
 {
@@ -89,7 +90,7 @@ namespace Summer.Network
                 }
                 catch (Exception ex)
                 {
-                    //Log.Information("MessageRouter.Fire error: " + ex.StackTrace);
+                    Debug.Log("MessageRouter.Fire error: " + ex.StackTrace);
                 }
             }
         }
@@ -177,12 +178,12 @@ namespace Summer.Network
             }
             catch (Exception ex)
             {
-                //Log.Information(ex.StackTrace);
+                Debug.Log(ex.StackTrace + " message" + ex.Message);
             }
             finally
             {
                 Interlocked.Decrement(ref workerCount);
-                //Log.Information("worker thread end");
+                Debug.Log("worker thread end");
             }
         }
 

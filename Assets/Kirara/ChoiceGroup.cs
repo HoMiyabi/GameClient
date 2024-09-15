@@ -19,6 +19,12 @@ namespace Kirara
             choiceItems.Add(choiceItem);
         }
 
+        public void Clear()
+        {
+            choiceItems.Clear();
+            chosenIndex = -1;
+        }
+
         public void Choose(int index)
         {
             onChoose.Invoke(index);

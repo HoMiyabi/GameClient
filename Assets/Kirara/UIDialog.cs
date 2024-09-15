@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Kirara
 {
-    public class UIDialog : MonoBehaviour
+    public class UIDialog : UIBase
     {
         [SerializeField] private Image bgMask;
         [SerializeField] private Transform box;
@@ -27,7 +27,7 @@ namespace Kirara
         public enum ETorchBgMaskBehavior
         {
             None,
-            Dismiss,
+            Close,
             PassThrough,
         }
 
@@ -48,13 +48,13 @@ namespace Kirara
                         bgMaskButton.onClick.RemoveAllListeners();
                         break;
                     }
-                    case ETorchBgMaskBehavior.Dismiss:
+                    case ETorchBgMaskBehavior.Close:
                     {
                         bgMask.raycastTarget = true;
                         var bgMaskButton = bgMask.GetComponent<Button>();
                         bgMaskButton.onClick.RemoveAllListeners();
 
-                        bgMaskButton.onClick.AddListener(Dismiss);
+                        bgMaskButton.onClick.AddListener(Close);
                         break;
                     }
                     case ETorchBgMaskBehavior.PassThrough:
@@ -72,8 +72,6 @@ namespace Kirara
         {
             var self = UIManager.Instance.NewUI<UIDialog>(UIPrefab.UIDialog);
 
-            self.Hide();
-
             self.Title = title;
             self.Message = message;
             self.TorchBgMaskBehavior = ETorchBgMaskBehavior.None;
@@ -87,10 +85,8 @@ namespace Kirara
             return this;
         }
 
-        public void Show()
+        public override void Show()
         {
-            gameObject.SetActive(true);
-
             box.localScale = new Vector3(0.7f, 0.7f, 0.7f);
             box.DOScale(1f, 0.1f);
 
@@ -103,9 +99,9 @@ namespace Kirara
             bgMask.DOFade(curAlpha, 0.1f);
         }
 
-        public void Hide() => gameObject.SetActive(false);
+        public override void Hide() => gameObject.SetActive(false);
 
-        public void Dismiss()
+        public override void Close()
         {
             var canvasGroup = box.GetComponent<CanvasGroup>();
 
@@ -115,7 +111,7 @@ namespace Kirara
             s.Insert(0, bgMask.DOFade(0f, 0.1f));
             s.onComplete += () =>
             {
-                Destroy(gameObject);
+                base.Close();
             };
         }
     }

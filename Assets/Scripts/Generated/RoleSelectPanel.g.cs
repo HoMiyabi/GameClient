@@ -5,7 +5,7 @@ public partial class RoleSelectPanel
     public UnityEngine.UI.Text textLevelContent;
     public UnityEngine.UI.Text textJobContent;
     public UnityEngine.UI.Text textNameContent;
-    public UnityEngine.UI.Button btnRemoveRole;
+    public UnityEngine.UI.Button btnDeleteRole;
     public UnityEngine.UI.Button btnCreateRole;
     public UnityEngine.Transform traAllRole;
 }

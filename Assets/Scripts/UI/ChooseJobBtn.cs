@@ -5,7 +5,7 @@ using Kirara;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChooseJobBtn : MonoBehaviour
+public class ChooseJobBtn : UIBase
 {
     [SerializeField] private Button button;
     [SerializeField] private Text uiText;

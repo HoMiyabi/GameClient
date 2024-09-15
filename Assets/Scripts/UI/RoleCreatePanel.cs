@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Kirara;
+using Proto;
+using Summer.Network;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public partial class RoleCreatePanel : UIBase
 {
@@ -17,7 +15,18 @@ public partial class RoleCreatePanel : UIBase
 
     private void btnConfirm_onClick()
     {
+        if (choiceGroup.chosenIndex == -1)
+        {
+            return;
+        }
         print($"name={inputRoleName.text}, job={jobIdToName[choiceGroup.chosenIndex]}");
+
+        CharacterCreateRequest request = new()
+        {
+            Name = inputRoleName.text,
+            JobType = choiceGroup.chosenIndex + 1,
+        };
+        NetClient.Send(request);
     }
 
     private void Start()
@@ -34,5 +43,29 @@ public partial class RoleCreatePanel : UIBase
             textChosenJob.text = jobIdToName[newIndex];
         });
         btnConfirm.onClick.AddListener(btnConfirm_onClick);
+
+        MessageRouter.Instance.Subscribe<CharacterCreateResponse>(OnCharacterCreateResponse);
+    }
+
+    private void OnDestroy()
+    {
+        MessageRouter.Instance.Off<CharacterCreateResponse>(OnCharacterCreateResponse);
+    }
+
+    private void OnCharacterCreateResponse(Connection sender, CharacterCreateResponse message)
+    {
+        MainThread.Instance.Enqueue(() =>
+        {
+            var dialog = UIDialog.New("系统消息", message.Message);
+            dialog.Open();
+            dialog.AddButton(UIButton.New("哦", () => dialog.Close()).transform).Show();
+            Close();
+        });
+
+        if (message.Success)
+        {
+            var request = new CharacterListRequest();
+            NetClient.Send(request);
+        }
     }
 }

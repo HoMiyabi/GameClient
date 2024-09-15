@@ -62,11 +62,12 @@ namespace Kirara
 
             SceneManager.sceneLoaded += (scene, loadMode) =>
             {
+                stk.Clear();
                 canvas = GameObject.Find("Canvas").transform;
             };
         }
 
-        public T NewUI<T>(string prefabPath)
+        public T NewUI<T>(string prefabPath) where T : UIBase
         {
             if (canvas == null)
             {
