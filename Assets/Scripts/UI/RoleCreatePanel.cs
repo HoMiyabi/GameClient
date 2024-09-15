@@ -15,6 +15,11 @@ public partial class RoleCreatePanel : UIBase
         "战士", "法师", "仙术", "游侠"
     };
 
+    private void btnConfirm_onClick()
+    {
+        print($"name={inputRoleName.text}, job={jobIdToName[choiceGroup.chosenIndex]}");
+    }
+
     private void Start()
     {
         traChooseJobBtnRoot.DestroyAllChildren();
@@ -28,9 +33,6 @@ public partial class RoleCreatePanel : UIBase
         {
             textChosenJob.text = jobIdToName[newIndex];
         });
-        btnConfirm.onClick.AddListener(() =>
-        {
-            print($"name={inputRoleName.text}, job={jobIdToName[choiceGroup.chosenIndex]}");
-        });
+        btnConfirm.onClick.AddListener(btnConfirm_onClick);
     }
 }

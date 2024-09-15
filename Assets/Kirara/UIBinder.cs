@@ -71,22 +71,11 @@ namespace Kirara
             string className = type.Name;
             string classFullName = type.FullName;
 
-            float t1 = Time.time;
             string text = GenerateText(classNamespace, className);
-            float t2 = Time.time;
-            print(t2 - t1);
-            
+
             WriteFile(text, classFullName);
 
-            EditorSceneManager.MarkSceneDirty(ui.gameObject.scene);
-
-            // Prefab不是Preview Scene
-            if (!EditorSceneManager.IsPreviewScene(ui.gameObject.scene))
-            {
-                // ArgumentException: EditorSceneManager.SetActive failed; you can not save a preview scene
-                EditorSceneManager.SaveScene(ui.gameObject.scene);
-            }
-            AssetDatabase.Refresh();
+            SaveScene();
         }
 
         private string GenerateText(string classNamespace, string className)
@@ -184,8 +173,20 @@ namespace Kirara
                 var fieldInfo = type.GetField(fieldName);
                 fieldInfo.SetValue(ui, com);
             }
+
+            SaveScene();
+        }
+
+        private void SaveScene()
+        {
             EditorSceneManager.MarkSceneDirty(ui.gameObject.scene);
-            EditorSceneManager.SaveScene(ui.gameObject.scene);
+
+            // Prefab不是Preview Scene
+            if (!EditorSceneManager.IsPreviewScene(ui.gameObject.scene))
+            {
+                // ArgumentException: EditorSceneManager.SetActive failed; you can not save a preview scene
+                EditorSceneManager.SaveScene(ui.gameObject.scene);
+            }
         }
     }
 }

@@ -73,21 +73,38 @@ public partial class RoleSelectPanel : UIBase
 
             textNameContent.text = roles[newIndex].name;
             textJobContent.text = jobToName[roles[newIndex].job];
-            textLavelContent.text = roles[newIndex].level.ToString();
+            textLevelContent.text = roles[newIndex].level.ToString();
         });
+    }
+
+    private void btnRemoveRole_onClick()
+    {
+        if (choiceGroup.chosenIndex == -1)
+        {
+            return;
+        }
+        print("删除角色" + roles[choiceGroup.chosenIndex].name);
+    }
+
+    private void btnStart_onClick()
+    {
+        if (choiceGroup.chosenIndex == -1)
+        {
+            return;
+        }
+        print("进入游戏" + roles[choiceGroup.chosenIndex].name);
     }
 
     private void Start()
     {
-        btnCreateCharacter.onClick.AddListener(() =>
+        btnCreateRole.onClick.AddListener(() =>
         {
             UIManager.Instance.NewUI<RoleCreatePanel>("Prefabs/UI/RoleCreatePanel").Open();
         });
 
-        btnRemoveCharacter.onClick.AddListener(() =>
-        {
-            print(roles[choiceGroup.chosenIndex].name);
-        });
+        btnRemoveRole.onClick.AddListener(btnRemoveRole_onClick);
+
+        btnStart.onClick.AddListener(btnStart_onClick);
 
         traAllRole.DestroyAllChildren();
 
