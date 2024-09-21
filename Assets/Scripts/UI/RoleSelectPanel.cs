@@ -12,7 +12,7 @@ public partial class RoleSelectPanel : UIBase
 {
     [SerializeField] private ChoiceGroup choiceGroup;
 
-    public class RoleInfo
+    public class CharacterInfo
     {
         public string name;
         public int job; // 1战士，2法师，3仙术，4游侠
@@ -20,11 +20,11 @@ public partial class RoleSelectPanel : UIBase
         public int id;
     }
 
-    private List<RoleInfo> roles = new List<RoleInfo>();
+    private List<CharacterInfo> characterInfos = new List<CharacterInfo>();
 
     private List<HeroPanel> heroPanels = new List<HeroPanel>();
 
-    private string[] jobToName = new string[] {"", "战士", "法师", "仙术", "游侠"};
+    private string[] jobIdToName = new string[] {"", "战士", "法师", "仙术", "游侠"};
 
     private void btnDeleteRole_onClick()
     {
@@ -39,7 +39,7 @@ public partial class RoleSelectPanel : UIBase
             .AddButton(UIButton.New("取消", () => dialog.Close()).transform)
             .AddButton(UIButton.New("确定", () =>
             {
-                var role = roles[choiceGroup.chosenIndex];
+                var role = characterInfos[choiceGroup.chosenIndex];
                 print($"删除角色, id={role.id}, name={role.name}");
                 var request = new CharacterDeleteRequest()
                 {
@@ -57,7 +57,9 @@ public partial class RoleSelectPanel : UIBase
         {
             return;
         }
-        print("进入游戏" + roles[choiceGroup.chosenIndex].name);
+        int index = choiceGroup.chosenIndex;
+        print("进入游戏" + characterInfos[index].name);
+        NetFn.EnterGame(characterInfos[index].id);
     }
 
     private void Start()
@@ -82,9 +84,9 @@ public partial class RoleSelectPanel : UIBase
             var newPanel = heroPanels[newIndex];
             newPanel.image.gameObject.SetActive(true);
 
-            textNameContent.text = roles[newIndex].name;
-            textJobContent.text = jobToName[roles[newIndex].job];
-            textLevelContent.text = roles[newIndex].level.ToString();
+            textNameContent.text = characterInfos[newIndex].name;
+            textJobContent.text = jobIdToName[characterInfos[newIndex].job];
+            textLevelContent.text = characterInfos[newIndex].level.ToString();
         });
 
         MessageRouter.Instance.Subscribe<CharacterListResponse>(OnCharacterListResponse);
@@ -102,10 +104,10 @@ public partial class RoleSelectPanel : UIBase
 
     private void OnCharacterListResponse(Connection sender, CharacterListResponse message)
     {
-        roles.Clear();
+        characterInfos.Clear();
         foreach (var c in message.CharacterList)
         {
-            roles.Add(new RoleInfo() {name = c.Name, job = c.TypeId, level = c.Level, id = c.Id});
+            characterInfos.Add(new CharacterInfo() {name = c.Name, job = c.TypeId, level = c.Level, id = c.Id});
         }
 
         MainThread.Instance.Enqueue(() =>
@@ -113,11 +115,11 @@ public partial class RoleSelectPanel : UIBase
             choiceGroup.Clear();
             heroPanels.Clear();
             traAllRole.DestroyAllChildren();
-            for (int i = 0; i < roles.Count; i++)
+            for (int i = 0; i < characterInfos.Count; i++)
             {
                 var panel = HeroPanel.New(choiceGroup);
                 panel.transform.SetParent(traAllRole);
-                panel.SetRole(roles[i].name, jobToName[roles[i].job], roles[i].level);
+                panel.SetRole(characterInfos[i].name, jobIdToName[characterInfos[i].job], characterInfos[i].level);
                 heroPanels.Add(panel);
             }
         });

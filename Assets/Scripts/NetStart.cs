@@ -25,8 +25,6 @@ public class NetStart : MonoSingleton<NetStart>
     public Button connectBtn;
     public Text networkLatencyText;
 
-    private GameObject hero; // 当前的角色
-
     private Dictionary<int, GameObject> entityIdToGO = new();
 
     public Transform canvas;
@@ -35,7 +33,7 @@ public class NetStart : MonoSingleton<NetStart>
     {
         base.Awake();
 
-        playBtn.onClick.AddListener(EnterGame);
+        // playBtn.onClick.AddListener(EnterGame);
         connectBtn.onClick.AddListener(Connect);
 
         foreach (GameObject go in keepAlive)
@@ -54,6 +52,9 @@ public class NetStart : MonoSingleton<NetStart>
 
     void Start()
     {
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Actor"), LayerMask.NameToLayer("Actor"), true);
+
         MessageRouter.Instance.Subscribe<GameEnterResponse>(OnGameEnterResponse);
         MessageRouter.Instance.Subscribe<SpaceCharactersEnterResponse>(OnSpaceCharactersEnterResponse);
         MessageRouter.Instance.Subscribe<SpaceEntitySyncResponse>(OnSpaceEntitySyncResponse);
@@ -63,6 +64,10 @@ public class NetStart : MonoSingleton<NetStart>
         SceneManager.LoadScene("LoginScene");
 
         Connect();
+
+        var textAsset = Resources.Load<TextAsset>("Data/SpaceDefine");
+        string text = textAsset.text;
+        print(text);
     }
 
     /// <summary>
@@ -145,20 +150,19 @@ public class NetStart : MonoSingleton<NetStart>
             Debug.LogWarning("进入失败");
         }
 
-        Debug.Log("角色信息:" + message.Entity);
+        Debug.Log("角色信息:" + message);
 
+        var character = message.Character;
         var entity = message.Entity;
         MainThread.Instance.Enqueue(() =>
         {
-            playBtn.gameObject.SetActive(false);
-            connectBtn.gameObject.SetActive(false);
-
             var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
-            hero = Instantiate(prefab);
+            var hero = Instantiate(prefab);
             entityIdToGO.Add(entity.Id, hero);
 
             hero.name = $"Character Player {entity.Id}";
+            hero.layer = LayerMask.NameToLayer("Actor");
 
             var gameEntity = hero.GetComponent<GameEntity>();
             if (gameEntity != null)
@@ -169,9 +173,9 @@ public class NetStart : MonoSingleton<NetStart>
                 gameEntity.SyncRequestAsync().Forget();
             }
 
-            hero.AddComponent<PlayerController>();
+            DontDestroyOnLoad(hero);
 
-            Camera.main.GetComponent<TPCameraController>().follow = hero.transform;
+            SceneManager.LoadScene("Scene3");
         });
     }
 
@@ -190,6 +194,7 @@ public class NetStart : MonoSingleton<NetStart>
                 entityIdToGO.Add(entity.Id, other);
 
                 other.name = $"Other Player {entity.Id}";
+                other.layer = LayerMask.NameToLayer("Actor");
                 var gameEntity = other.GetComponent<GameEntity>();
                 if (gameEntity != null)
                 {
@@ -201,29 +206,19 @@ public class NetStart : MonoSingleton<NetStart>
         });
     }
 
-    void Update()
-    {
-        
-    }
-
-    public void Login()
-    {
-        
-    }
-
-    public void EnterGame()
-    {
-        if (hero != null)
-        {
-            return;
-        }
-
-        GameEnterRequest request = new()
-        {
-            CharacterId = 0,
-        };
-        NetClient.Send(request);
-    }
+    // public void EnterGame(int characterId)
+    // {
+    //     // if (hero != null)
+    //     // {
+    //     //     return;
+    //     // }
+    //
+    //     GameEnterRequest request = new()
+    //     {
+    //         CharacterId = characterId,
+    //     };
+    //     NetClient.Send(request);
+    // }
 
     private void OnApplicationQuit()
     {

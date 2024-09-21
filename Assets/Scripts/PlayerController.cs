@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
@@ -13,11 +14,30 @@ public class PlayerController : MonoBehaviour
 
     private InputControls input;
 
+    public float jumpForce = 1;
+
     private void Awake()
     {
         heroAnimations = GetComponent<HeroAnimations>();
         input = new InputControls();
+        input.Player.Jump.started += context =>
+        {
+            var _rigidbody = GetComponent<Rigidbody>();
+            if (_rigidbody != null)
+            {
+                _rigidbody.AddForce(Vector3.up * jumpForce);
+            }
+        };
+    }
+
+    private void OnEnable()
+    {
         input.Player.Enable();
+    }
+
+    private void Disable()
+    {
+        input.Player.Disable();
     }
 
     private void Update()
@@ -41,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
         if (localMove != Vector3.zero)
         {
-            var tpCameraController = Camera.main.GetComponent<TPCameraController>();
+            var tpCameraController = GetComponent<TPCameraController>();
             var rot = Quaternion.Euler(0f, tpCameraController.yaw, 0f);
             Vector3 wsMove = rot * localMove;
 
