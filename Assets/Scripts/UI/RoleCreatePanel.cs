@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Kirara;
 using Proto;
-using Summer.Network;
 using UnityEngine;
 
 public partial class RoleCreatePanel : UIBase
@@ -49,7 +48,7 @@ public partial class RoleCreatePanel : UIBase
 
     private void OnDestroy()
     {
-        MessageRouter.Instance.Off<CharacterCreateResponse>(OnCharacterCreateResponse);
+        MessageRouter.Instance.Unsubscribe<CharacterCreateResponse>(OnCharacterCreateResponse);
     }
 
     private void OnCharacterCreateResponse(Connection sender, CharacterCreateResponse message)

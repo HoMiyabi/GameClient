@@ -1,13 +1,16 @@
-using Summer.Network;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Kirara;
+using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 using Proto;
 using UnityEngine.SceneManagement;
+using Debug = UnityEngine.Debug;
 
 public class NetStart : MonoSingleton<NetStart>
 {
@@ -33,6 +36,7 @@ public class NetStart : MonoSingleton<NetStart>
     {
         base.Awake();
 
+
         // playBtn.onClick.AddListener(EnterGame);
         connectBtn.onClick.AddListener(Connect);
 
@@ -52,7 +56,8 @@ public class NetStart : MonoSingleton<NetStart>
 
     void Start()
     {
-
+        // Debug.Log($"MainThreadId={Thread.CurrentThread.ManagedThreadId}");
+        Application.targetFrameRate = 90;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Actor"), LayerMask.NameToLayer("Actor"), true);
 
         MessageRouter.Instance.Subscribe<GameEnterResponse>(OnGameEnterResponse);
@@ -64,10 +69,6 @@ public class NetStart : MonoSingleton<NetStart>
         SceneManager.LoadScene("LoginScene");
 
         Connect();
-
-        var textAsset = Resources.Load<TextAsset>("Data/SpaceDefine");
-        string text = textAsset.text;
-        print(text);
     }
 
     /// <summary>
@@ -98,9 +99,7 @@ public class NetStart : MonoSingleton<NetStart>
     // 第一次延迟好大
     private void OnHeartBeatResponse(Connection sender, HeartBeatResponse message)
     {
-        var now = DateTime.UtcNow;
-        var span = now - lastHeartBeatTime;
-        int ms = (int)Math.Round(span.TotalMilliseconds);
+        long ms = heartBeatStopwatch.ElapsedMilliseconds;
         MainThread.Instance.Enqueue(() =>
         {
             networkLatencyText.text = $"{ms} ms";
@@ -108,7 +107,7 @@ public class NetStart : MonoSingleton<NetStart>
         });
     }
 
-    private DateTime lastHeartBeatTime = DateTime.MinValue;
+    private Stopwatch heartBeatStopwatch = new();
 
     private async UniTaskVoid SendHeartBeatMessage()
     {
@@ -117,8 +116,7 @@ public class NetStart : MonoSingleton<NetStart>
         while (true)
         {
             await UniTask.WaitForSeconds(1.0f);
-
-            lastHeartBeatTime = DateTime.UtcNow;
+            heartBeatStopwatch.Restart();
             NetClient.Send(request);
         }
     }
@@ -175,7 +173,7 @@ public class NetStart : MonoSingleton<NetStart>
 
             DontDestroyOnLoad(hero);
 
-            SceneManager.LoadScene("Scene3");
+            SceneManager.LoadScene(DefineManager.Instance.spaceDefineDict[character.SpaceId].Resource);
         });
     }
 
@@ -205,20 +203,6 @@ public class NetStart : MonoSingleton<NetStart>
             }
         });
     }
-
-    // public void EnterGame(int characterId)
-    // {
-    //     // if (hero != null)
-    //     // {
-    //     //     return;
-    //     // }
-    //
-    //     GameEnterRequest request = new()
-    //     {
-    //         CharacterId = characterId,
-    //     };
-    //     NetClient.Send(request);
-    // }
 
     private void OnApplicationQuit()
     {

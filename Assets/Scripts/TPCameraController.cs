@@ -3,6 +3,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TPCameraController : MonoBehaviour
 {
@@ -13,15 +14,16 @@ public class TPCameraController : MonoBehaviour
     public float mouseSensitivity = 8f;
     public float pitchSensitivity = 0.022f;
     public float yawSensitivity = 0.022f;
-    public float zoomSensitivity = 0.01f;
+    public float distanceSensitivity = 1f;
 
     [Header("距离")]
-    public float targetDistance = 4.4f;
-    public float curDistance = 4.4f;
+    public float targetDistance = 5f;
+    public float curDistance = 5f;
     public float minDistance = 2f;
     public float maxDistance = 8f;
     public float zoomDuration = 0.1f;
     private TweenerCore<float, float, FloatOptions> zoomTweener;
+    public float distanceAdjustSpeed = 1f;
 
     [Header("旋转")]
     public float pitch = 0f; // 俯仰角
@@ -96,6 +98,14 @@ public class TPCameraController : MonoBehaviour
 
             dRot = input.Player.Rotate.ReadValue<Vector2>();
             dZoom = input.Player.Zoom.ReadValue<float>();
+            if (dZoom > 0)
+            {
+                dZoom = 1;
+            }
+            if (dZoom < 0)
+            {
+                dZoom = -1;
+            }
         }
         float dy = dRot.y;
         float dx = dRot.x;
@@ -116,16 +126,19 @@ public class TPCameraController : MonoBehaviour
         }
 
         // Distance
-        float newTargetDistance;
-        newTargetDistance = targetDistance - dZoom * zoomSensitivity;
-        newTargetDistance = Mathf.Clamp(newTargetDistance, minDistance, maxDistance);
-        if (Mathf.Abs(newTargetDistance - targetDistance) > Mathf.Epsilon)
-        {
-            targetDistance = newTargetDistance;
-            zoomTweener?.Kill();
-            zoomTweener = DOTween.To(() => curDistance, x => curDistance = x,
-                targetDistance, zoomDuration);
-        }
+        // float newTargetDistance;
+        // newTargetDistance = targetDistance - dZoom * distanceSensitivity;
+        // newTargetDistance = Mathf.Clamp(newTargetDistance, minDistance, maxDistance);
+        // if (Mathf.Abs(newTargetDistance - targetDistance) > Mathf.Epsilon)
+        // {
+        //     targetDistance = newTargetDistance;
+        //     zoomTweener?.Kill();
+        //     zoomTweener = DOTween.To(() => curDistance, x => curDistance = x,
+        //         targetDistance, zoomDuration);
+        // }
+        targetDistance -= dZoom * distanceSensitivity;
+        targetDistance = Mathf.Clamp(targetDistance, minDistance, maxDistance);
+        curDistance = Mathf.Lerp(curDistance, targetDistance, Time.deltaTime * distanceAdjustSpeed);
 
         // Rotation
         _camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);

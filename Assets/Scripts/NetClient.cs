@@ -4,9 +4,9 @@ using UnityEngine;
 using Summer;
 using System.Net;
 using System.Net.Sockets;
-using Summer.Network;
 using System;
 using Google.Protobuf;
+using Kirara;
 
 /// <summary>
 /// 网络客户端
@@ -23,7 +23,6 @@ public class NetClient
         }
     }
 
-
     /// <summary>
     /// 连接到服务器
     /// </summary>
@@ -37,7 +36,8 @@ public class NetClient
         socket.Connect(ipe);
         Debug.Log("连接到服务端");
         conn = new Connection(socket);
-        conn.OnDisconnected += OnDisconnected;
+        conn.Disconnected += OnDisconnected;
+        conn.Received += MessageRouter.Instance.AddMessage;
         //启动消息分发器
         MessageRouter.Instance.Start(4);
     }
@@ -48,18 +48,9 @@ public class NetClient
         Debug.Log("与服务器断开");
     }
 
-    /// <summary>
-    /// 关闭网络客户端
-    /// </summary>
     public static void Close()
     {
-        try
-        {
-            conn?.Close();
-        }
-        catch (Exception e)
-        {
-            Debug.Log(e);
-        }
+        MessageRouter.Instance.Stop();
+        conn.Close();
     }
 }

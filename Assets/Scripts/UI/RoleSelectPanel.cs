@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Kirara;
 using Proto;
-using Sirenix.OdinInspector;
-using Summer.Network;
 using UnityEngine;
 using UnityEngine.UI;
 
