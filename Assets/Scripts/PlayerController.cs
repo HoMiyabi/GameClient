@@ -14,25 +14,26 @@ public class PlayerController : MonoBehaviour
 
     private InputControls input;
 
-    public float jumpForce = 1;
+    public float jumpForce = 15000;
 
     private void Awake()
     {
         heroAnimations = GetComponent<HeroAnimations>();
         input = new InputControls();
+    }
+
+    private void OnEnable()
+    {
+        input.Player.Enable();
         input.Player.Jump.started += context =>
         {
+            print("Jump");
             var _rigidbody = GetComponent<Rigidbody>();
             if (_rigidbody != null)
             {
                 _rigidbody.AddForce(Vector3.up * jumpForce);
             }
         };
-    }
-
-    private void OnEnable()
-    {
-        input.Player.Enable();
     }
 
     private void Disable()
