@@ -11,7 +11,7 @@ public class TPCameraController : MonoBehaviour
     public Vector3 offset;
 
     [Header("灵敏度")]
-    public float mouseSensitivity = 8f;
+    public float mouseSensitivity = 6f;
     public float pitchSensitivity = 0.022f;
     public float yawSensitivity = 0.022f;
     public float distanceSensitivity = 1f;
