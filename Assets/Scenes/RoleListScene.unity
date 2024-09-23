@@ -5723,6 +5723,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198691703}
   m_CullTransparentMesh: 1
+--- !u!1 &1212966373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1212966374}
+  - component: {fileID: 1212966376}
+  - component: {fileID: 1212966375}
+  m_Layer: 5
+  m_Name: text111
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1212966374
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212966373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1975805492}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1212966375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212966373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1212966376
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212966373}
+  m_CullTransparentMesh: 1
 --- !u!1 &1226042053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9058,6 +9137,7 @@ RectTransform:
   m_Children:
   - {fileID: 1431227124}
   - {fileID: 1030508408}
+  - {fileID: 1212966374}
   - {fileID: 711744423}
   - {fileID: 606755391}
   - {fileID: 849087320}
@@ -9087,7 +9167,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 119
 --- !u!114 &1975805494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9143,7 +9223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1988873325}
-  - component: {fileID: 1988873326}
+  - component: {fileID: 1988873328}
   - component: {fileID: 1988873327}
   m_Layer: 0
   m_Name: Kirara
@@ -9168,7 +9248,135 @@ Transform:
   - {fileID: 1975805492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1988873326
+--- !u!114 &1988873327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988873324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d831c93c7d970649a86cce06ab0a9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text_5_: {fileID: 68099573}
+  text_4_: {fileID: 849087321}
+  text_3_: {fileID: 606755393}
+  text_2_: {fileID: 711744425}
+  text111: {fileID: 1212966375}
+  text_1_: {fileID: 1030508406}
+  text: {fileID: 1431227122}
+  text_8_: {fileID: 289069856}
+  text_9_: {fileID: 984750824}
+  text_7_: {fileID: 796114412}
+  text_113_: {fileID: 434313796}
+  text_112_: {fileID: 905583440}
+  text_111_: {fileID: 1967459660}
+  text_110_: {fileID: 1631036648}
+  text_109_: {fileID: 1611105162}
+  text_108_: {fileID: 88265903}
+  text_107_: {fileID: 1487975956}
+  text_106_: {fileID: 83638648}
+  text_105_: {fileID: 1480319396}
+  text_104_: {fileID: 1263509942}
+  text_103_: {fileID: 378703595}
+  text_102_: {fileID: 1933583046}
+  text_101_: {fileID: 1953623041}
+  text_100_: {fileID: 1107666630}
+  text_99_: {fileID: 1088589229}
+  text_98_: {fileID: 851890547}
+  text_97_: {fileID: 1226042055}
+  text_96_: {fileID: 642729639}
+  text_95_: {fileID: 1922304020}
+  text_94_: {fileID: 1994195562}
+  text_93_: {fileID: 550411190}
+  text_92_: {fileID: 2087230312}
+  text_91_: {fileID: 787404899}
+  text_90_: {fileID: 809390488}
+  text_89_: {fileID: 1694072608}
+  text_88_: {fileID: 1551006542}
+  text_87_: {fileID: 67607925}
+  text_86_: {fileID: 1182260870}
+  text_85_: {fileID: 1767463133}
+  text_84_: {fileID: 650045097}
+  text_83_: {fileID: 518654728}
+  text_82_: {fileID: 1720804771}
+  text_81_: {fileID: 1168995882}
+  text_80_: {fileID: 351747046}
+  text_79_: {fileID: 1519104073}
+  text_78_: {fileID: 937065180}
+  text_77_: {fileID: 426268225}
+  text_76_: {fileID: 887977711}
+  text_75_: {fileID: 862187969}
+  text_74_: {fileID: 1468744101}
+  text_73_: {fileID: 210320581}
+  text_72_: {fileID: 1401711011}
+  text_71_: {fileID: 2144244840}
+  text_70_: {fileID: 1917142119}
+  text_69_: {fileID: 938410444}
+  text_68_: {fileID: 127842297}
+  text_67_: {fileID: 217611976}
+  text_66_: {fileID: 1422292306}
+  text_65_: {fileID: 468242261}
+  text_64_: {fileID: 1765536472}
+  text_63_: {fileID: 653967227}
+  text_62_: {fileID: 1106326021}
+  text_61_: {fileID: 482275131}
+  text_60_: {fileID: 715457340}
+  text_59_: {fileID: 1507287138}
+  text_58_: {fileID: 301871221}
+  text_57_: {fileID: 2060632660}
+  text_56_: {fileID: 2028774115}
+  text_55_: {fileID: 442108414}
+  text_54_: {fileID: 2051526510}
+  text_53_: {fileID: 376128038}
+  text_52_: {fileID: 185405860}
+  text_51_: {fileID: 1095957720}
+  text_50_: {fileID: 95057729}
+  text_49_: {fileID: 1234989006}
+  text_48_: {fileID: 721413982}
+  text_47_: {fileID: 2082278043}
+  text_46_: {fileID: 710445484}
+  text_45_: {fileID: 1077540}
+  text_44_: {fileID: 1434497917}
+  text_43_: {fileID: 1105015442}
+  text_42_: {fileID: 799471322}
+  text_41_: {fileID: 750521201}
+  text_40_: {fileID: 2096590570}
+  text_39_: {fileID: 1410763350}
+  text_38_: {fileID: 1277077050}
+  text_37_: {fileID: 11877289}
+  text_36_: {fileID: 1198691705}
+  text_35_: {fileID: 668398569}
+  text_34_: {fileID: 507555397}
+  text_33_: {fileID: 931251761}
+  text_32_: {fileID: 1686840455}
+  text_31_: {fileID: 1959963194}
+  text_30_: {fileID: 1878728793}
+  text_29_: {fileID: 1458709307}
+  text_28_: {fileID: 1801493104}
+  text_27_: {fileID: 167931474}
+  text_26_: {fileID: 1011683041}
+  text_25_: {fileID: 2078349702}
+  text_24_: {fileID: 347955070}
+  text_23_: {fileID: 232047447}
+  text_22_: {fileID: 1497042888}
+  text_21_: {fileID: 719650910}
+  text_20_: {fileID: 1415445701}
+  text_19_: {fileID: 2134393720}
+  text_18_: {fileID: 2122069610}
+  text_17_: {fileID: 2090417693}
+  text_16_: {fileID: 1192849073}
+  text_15_: {fileID: 2055714507}
+  text_14_: {fileID: 1708593289}
+  text_13_: {fileID: 1342936002}
+  text_12_: {fileID: 900815435}
+  text_11_: {fileID: 1376478769}
+  text_10_: {fileID: 91433059}
+  text_6_: {fileID: 1901684544}
+  self: 0
+--- !u!114 &1988873328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9195,6 +9403,9 @@ MonoBehaviour:
   - fieldName: text_2_
     comTypeFullName: UnityEngine.UI.Text
     com: {fileID: 711744425}
+  - fieldName: text111
+    comTypeFullName: UnityEngine.UI.Text
+    com: {fileID: 1212966375}
   - fieldName: text_1_
     comTypeFullName: UnityEngine.UI.Text
     com: {fileID: 1030508406}
@@ -9525,133 +9736,6 @@ MonoBehaviour:
   - fieldName: text_6_
     comTypeFullName: UnityEngine.UI.Text
     com: {fileID: 1901684544}
---- !u!114 &1988873327
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988873324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d831c93c7d970649a86cce06ab0a9ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text_5_: {fileID: 68099573}
-  text_4_: {fileID: 849087321}
-  text_3_: {fileID: 606755393}
-  text_2_: {fileID: 711744425}
-  text_1_: {fileID: 1030508406}
-  text: {fileID: 1431227122}
-  text_8_: {fileID: 289069856}
-  text_9_: {fileID: 984750824}
-  text_7_: {fileID: 796114412}
-  text_113_: {fileID: 434313796}
-  text_112_: {fileID: 905583440}
-  text_111_: {fileID: 1967459660}
-  text_110_: {fileID: 1631036648}
-  text_109_: {fileID: 1611105162}
-  text_108_: {fileID: 88265903}
-  text_107_: {fileID: 1487975956}
-  text_106_: {fileID: 83638648}
-  text_105_: {fileID: 1480319396}
-  text_104_: {fileID: 1263509942}
-  text_103_: {fileID: 378703595}
-  text_102_: {fileID: 1933583046}
-  text_101_: {fileID: 1953623041}
-  text_100_: {fileID: 1107666630}
-  text_99_: {fileID: 1088589229}
-  text_98_: {fileID: 851890547}
-  text_97_: {fileID: 1226042055}
-  text_96_: {fileID: 642729639}
-  text_95_: {fileID: 1922304020}
-  text_94_: {fileID: 1994195562}
-  text_93_: {fileID: 550411190}
-  text_92_: {fileID: 2087230312}
-  text_91_: {fileID: 787404899}
-  text_90_: {fileID: 809390488}
-  text_89_: {fileID: 1694072608}
-  text_88_: {fileID: 1551006542}
-  text_87_: {fileID: 67607925}
-  text_86_: {fileID: 1182260870}
-  text_85_: {fileID: 1767463133}
-  text_84_: {fileID: 650045097}
-  text_83_: {fileID: 518654728}
-  text_82_: {fileID: 1720804771}
-  text_81_: {fileID: 1168995882}
-  text_80_: {fileID: 351747046}
-  text_79_: {fileID: 1519104073}
-  text_78_: {fileID: 937065180}
-  text_77_: {fileID: 426268225}
-  text_76_: {fileID: 887977711}
-  text_75_: {fileID: 862187969}
-  text_74_: {fileID: 1468744101}
-  text_73_: {fileID: 210320581}
-  text_72_: {fileID: 1401711011}
-  text_71_: {fileID: 2144244840}
-  text_70_: {fileID: 1917142119}
-  text_69_: {fileID: 938410444}
-  text_68_: {fileID: 127842297}
-  text_67_: {fileID: 217611976}
-  text_66_: {fileID: 1422292306}
-  text_65_: {fileID: 468242261}
-  text_64_: {fileID: 1765536472}
-  text_63_: {fileID: 653967227}
-  text_62_: {fileID: 1106326021}
-  text_61_: {fileID: 482275131}
-  text_60_: {fileID: 715457340}
-  text_59_: {fileID: 1507287138}
-  text_58_: {fileID: 301871221}
-  text_57_: {fileID: 2060632660}
-  text_56_: {fileID: 2028774115}
-  text_55_: {fileID: 442108414}
-  text_54_: {fileID: 2051526510}
-  text_53_: {fileID: 376128038}
-  text_52_: {fileID: 185405860}
-  text_51_: {fileID: 1095957720}
-  text_50_: {fileID: 95057729}
-  text_49_: {fileID: 1234989006}
-  text_48_: {fileID: 721413982}
-  text_47_: {fileID: 2082278043}
-  text_46_: {fileID: 710445484}
-  text_45_: {fileID: 1077540}
-  text_44_: {fileID: 1434497917}
-  text_43_: {fileID: 1105015442}
-  text_42_: {fileID: 799471322}
-  text_41_: {fileID: 750521201}
-  text_40_: {fileID: 2096590570}
-  text_39_: {fileID: 1410763350}
-  text_38_: {fileID: 1277077050}
-  text_37_: {fileID: 11877289}
-  text_36_: {fileID: 1198691705}
-  text_35_: {fileID: 668398569}
-  text_34_: {fileID: 507555397}
-  text_33_: {fileID: 931251761}
-  text_32_: {fileID: 1686840455}
-  text_31_: {fileID: 1959963194}
-  text_30_: {fileID: 1878728793}
-  text_29_: {fileID: 1458709307}
-  text_28_: {fileID: 1801493104}
-  text_27_: {fileID: 167931474}
-  text_26_: {fileID: 1011683041}
-  text_25_: {fileID: 2078349702}
-  text_24_: {fileID: 347955070}
-  text_23_: {fileID: 232047447}
-  text_22_: {fileID: 1497042888}
-  text_21_: {fileID: 719650910}
-  text_20_: {fileID: 1415445701}
-  text_19_: {fileID: 2134393720}
-  text_18_: {fileID: 2122069610}
-  text_17_: {fileID: 2090417693}
-  text_16_: {fileID: 1192849073}
-  text_15_: {fileID: 2055714507}
-  text_14_: {fileID: 1708593289}
-  text_13_: {fileID: 1342936002}
-  text_12_: {fileID: 900815435}
-  text_11_: {fileID: 1376478769}
-  text_10_: {fileID: 91433059}
-  text_6_: {fileID: 1901684544}
-  self: 0
 --- !u!1 &1994195560
 GameObject:
   m_ObjectHideFlags: 0

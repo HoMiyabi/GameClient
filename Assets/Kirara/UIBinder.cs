@@ -1,16 +1,20 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
+#endif
 
 namespace Kirara
 {
     public class UIBinder : MonoBehaviour
     {
+
+#if UNITY_EDITOR
+
         [SerializeField]
         private MonoBehaviour ui;
         [SerializeField]
@@ -177,7 +181,7 @@ namespace Kirara
             SaveScene();
         }
 
-        private void SaveScene()
+        public void SaveScene()
         {
             EditorSceneManager.MarkSceneDirty(ui.gameObject.scene);
 
@@ -188,5 +192,8 @@ namespace Kirara
                 EditorSceneManager.SaveScene(ui.gameObject.scene);
             }
         }
+
+#endif
+
     }
 }

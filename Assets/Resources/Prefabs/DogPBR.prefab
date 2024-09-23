@@ -1264,10 +1264,8 @@ GameObject:
   - component: {fileID: 8422892626592999198}
   - component: {fileID: -3409252424517240234}
   - component: {fileID: 2103745233392407562}
-  - component: {fileID: 2513148956353377222}
   - component: {fileID: 3592861645697264749}
   - component: {fileID: 4286399700934258587}
-  - component: {fileID: 6964083396516852020}
   m_Layer: 6
   m_Name: DogPBR
   m_TagString: Untagged
@@ -1342,33 +1340,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
---- !u!114 &2513148956353377222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8422892626600285392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e23b0fe5f3294cadbc106172de07e94a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 1, z: 0}
-  mouseSensitivity: 8
-  pitchSensitivity: 0.022
-  yawSensitivity: 0.022
-  distanceSensitivity: 1
-  targetDistance: 5
-  curDistance: 5
-  minDistance: 2
-  maxDistance: 8
-  zoomDuration: 0.1
-  distanceAdjustSpeed: 15
-  pitch: 0
-  minPitch: -70
-  maxPitch: 70
-  yaw: 0
 --- !u!136 &3592861645697264749
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1419,21 +1390,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6964083396516852020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8422892626600285392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7422c0a6423519a409230963da59fd51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  normalSpeed: 8
-  speedUpSpeed: 12
-  jumpForce: 300
 --- !u!1 &8422892626600285394
 GameObject:
   m_ObjectHideFlags: 0

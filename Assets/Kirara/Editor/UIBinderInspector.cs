@@ -1,10 +1,11 @@
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Kirara
 {
     [CustomEditor(typeof(UIBinder))]
-    public class UIBinderEditor : Editor
+    public class UIBinderInspector : Editor
     {
         public override void OnInspectorGUI()
         {

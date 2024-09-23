@@ -21,14 +21,12 @@ public class TPCameraController : MonoBehaviour
     public float curDistance = 5f;
     public float minDistance = 2f;
     public float maxDistance = 8f;
-    public float zoomDuration = 0.1f;
-    private TweenerCore<float, float, FloatOptions> zoomTweener;
-    public float distanceAdjustSpeed = 1f;
+    public float distanceAdjustSpeed = 15f;
 
     [Header("旋转")]
     public float pitch = 0f; // 俯仰角
-    public float minPitch = -70f;
-    public float maxPitch = 70f;
+    public float minPitch = -80f;
+    public float maxPitch = 80f;
     public float yaw = 0f; // 偏航角
 
     private Camera _camera;

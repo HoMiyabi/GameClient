@@ -171,6 +171,9 @@ public class NetStart : MonoSingleton<NetStart>
                 gameEntity.SyncRequestAsync().Forget();
             }
 
+            hero.AddComponent<TPCameraController>();
+            hero.AddComponent<PlayerController>();
+
             DontDestroyOnLoad(hero);
 
             SceneManager.LoadScene(DefineManager.Instance.spaceDefineDict[character.SpaceId].Resource);

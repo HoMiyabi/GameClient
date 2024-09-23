@@ -7,6 +7,7 @@ namespace Kirara.Abc
         public UnityEngine.UI.Text text_4_;
         public UnityEngine.UI.Text text_3_;
         public UnityEngine.UI.Text text_2_;
+        public UnityEngine.UI.Text text111;
         public UnityEngine.UI.Text text_1_;
         public UnityEngine.UI.Text text;
         public UnityEngine.UI.Text text_8_;
