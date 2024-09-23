@@ -171,7 +171,8 @@ public class NetStart : MonoSingleton<NetStart>
                 gameEntity.SyncRequestAsync().Forget();
             }
 
-            hero.AddComponent<TPCameraController>();
+            var tpCameraController = hero.AddComponent<TPCameraController>();
+            tpCameraController.offset = new Vector3(0, 1, 0);
             hero.AddComponent<PlayerController>();
 
             DontDestroyOnLoad(hero);
@@ -196,6 +197,7 @@ public class NetStart : MonoSingleton<NetStart>
 
                 other.name = $"Other Player {entity.Id}";
                 other.layer = LayerMask.NameToLayer("Actor");
+                DontDestroyOnLoad(other);
                 var gameEntity = other.GetComponent<GameEntity>();
                 if (gameEntity != null)
                 {
