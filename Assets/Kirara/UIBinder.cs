@@ -1,10 +1,11 @@
-#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+
+#if UNITY_EDITOR
 using UnityEditor.SceneManagement;
 #endif
 
