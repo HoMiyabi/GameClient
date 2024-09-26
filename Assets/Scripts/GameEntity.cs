@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Proto;
 using UnityEngine;
@@ -14,16 +11,16 @@ public class GameEntity : MonoBehaviour
 
     public async UniTaskVoid SyncRequestAsync()
     {
-        var request = new Proto.SpaceEntitySyncRequest()
+        var request = new SpaceEntitySyncRequest
         {
-            EntitySync = new Proto.NEntitySync()
+            EntitySync = new NEntitySync
             {
-                Entity = new Proto.NEntity()
+                Entity = new NEntity
                 {
                     Position = new NVector3(),
                     Direction = new NVector3(),
-                }
-            }
+                },
+            },
         };
 
         while (true)

@@ -4,7 +4,7 @@ public static class NetFn
 {
     public static void EnterGame(int characterId)
     {
-        GameEnterRequest request = new()
+        var request = new GameEnterRequest()
         {
             CharacterId = characterId,
         };

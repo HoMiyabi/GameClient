@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Kirara;
+using Manager;
 using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,8 +28,6 @@ public class NetStart : MonoSingleton<NetStart>
     public Button playBtn;
     public Button connectBtn;
     public Text networkLatencyText;
-
-    private Dictionary<int, GameObject> entityIdToGO = new();
 
     public Transform canvas;
 
@@ -81,7 +80,7 @@ public class NetStart : MonoSingleton<NetStart>
         int entityId = message.EntityId;
         MainThread.Instance.Enqueue(() =>
         {
-            if (entityIdToGO.Remove(entityId, out var go))
+            if (EntityManager.Instance.entityIdToGO.Remove(entityId, out var go))
             {
                 Destroy(go);
             }
@@ -127,7 +126,7 @@ public class NetStart : MonoSingleton<NetStart>
         var entity = message.EntitySync.Entity;
         MainThread.Instance.Enqueue(() =>
         {
-            if (entityIdToGO.TryGetValue(entity.Id, out var go))
+            if (EntityManager.Instance.entityIdToGO.TryGetValue(entity.Id, out var go))
             {
                 var gameEntity = go.GetComponent<GameEntity>();
                 gameEntity.SetFromProto(entity);
@@ -157,7 +156,7 @@ public class NetStart : MonoSingleton<NetStart>
             var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
             var hero = Instantiate(prefab);
-            entityIdToGO.Add(entity.Id, hero);
+            EntityManager.Instance.entityIdToGO.Add(entity.Id, hero);
 
             hero.name = $"Character Player {entity.Id}";
             hero.layer = LayerMask.NameToLayer("Actor");
@@ -185,26 +184,13 @@ public class NetStart : MonoSingleton<NetStart>
     private void OnSpaceCharactersEnterResponse(Connection conn, SpaceCharactersEnterResponse message)
     {
         Debug.Log("角色进入地图 " + message);
-        var entities = message.EntityList;
+        var characters = message.Characters;
 
         MainThread.Instance.Enqueue(() =>
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
-            foreach (var entity in entities)
+            foreach (var nCharacter in characters)
             {
-                var other = Instantiate(prefab);
-                entityIdToGO.Add(entity.Id, other);
-
-                other.name = $"Other Player {entity.Id}";
-                other.layer = LayerMask.NameToLayer("Actor");
-                DontDestroyOnLoad(other);
-                var gameEntity = other.GetComponent<GameEntity>();
-                if (gameEntity != null)
-                {
-                    gameEntity.isMine = false;
-                    gameEntity.SetFromProto(entity);
-                    gameEntity.SyncToTransform();
-                }
+                GameObjectManager.Instance.CreateCharacterObject(nCharacter);
             }
         });
     }
