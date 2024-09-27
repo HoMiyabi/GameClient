@@ -126,14 +126,14 @@ public class NetStart : MonoSingleton<NetStart>
         var entity = message.EntitySync.Entity;
         MainThread.Instance.Enqueue(() =>
         {
-            if (EntityManager.Instance.entityIdToGO.TryGetValue(entity.Id, out var go))
+            if (EntityManager.Instance.entityIdToGO.TryGetValue(entity.EntityId, out var go))
             {
                 var gameEntity = go.GetComponent<GameEntity>();
                 gameEntity.SetFromProto(entity);
             }
             else
             {
-                Debug.LogWarning($"entityIdToGO.TryGetValue(entity.Id, out var go) id {entity.Id}");
+                Debug.LogWarning($"entityIdToGO.TryGetValue(entity.Id, out var go) id {entity.EntityId}");
             }
         });
     }
@@ -150,15 +150,15 @@ public class NetStart : MonoSingleton<NetStart>
         Debug.Log("角色信息:" + message);
 
         var character = message.Character;
-        var entity = message.Entity;
+        var entity = message.Character.NEntity;
         MainThread.Instance.Enqueue(() =>
         {
             var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
 
             var hero = Instantiate(prefab);
-            EntityManager.Instance.entityIdToGO.Add(entity.Id, hero);
+            EntityManager.Instance.entityIdToGO.Add(entity.EntityId, hero);
 
-            hero.name = $"Character Player {entity.Id}";
+            hero.name = $"Character Player EntityId={entity.EntityId}";
             hero.layer = LayerMask.NameToLayer("Actor");
 
             var gameEntity = hero.GetComponent<GameEntity>();

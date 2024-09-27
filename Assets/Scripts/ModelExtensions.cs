@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Proto;
+using UnityEngine;
 
 public static class ModelExtensions
 {
@@ -12,30 +13,30 @@ public static class ModelExtensions
     //     self.rotation = Quaternion.Euler(d.X * 0.001f, d.Y * 0.001f, d.Z * 0.001f);
     // }
 
-    public static void SetFromNative(this Proto.NVector3 self, Vector3 other)
+    public static void SetFromNative(this NInt3 self, Vector3 other)
     {
         self.X = (int)(other.x * 1000);
         self.Y = (int)(other.y * 1000);
         self.Z = (int)(other.z * 1000);
     }
 
-    public static void SetFromProto(this ref Vector3 self, Proto.NVector3 other)
+    public static void SetFromProto(this ref Vector3 self, NInt3 other)
     {
         self.x = other.X * 0.001f;
         self.y = other.Y * 0.001f;
         self.z = other.Z * 0.001f;
     }
 
-    public static void SetFromNative(this Proto.NEntity self, GameEntity other)
+    public static void SetFromNative(this NEntity self, GameEntity other)
     {
-        self.Id = other.entityId;
+        self.EntityId = other.entityId;
         self.Position.SetFromNative(other.position);
         self.Direction.SetFromNative(other.direction);
     }
 
-    public static void SetFromProto(this GameEntity self, Proto.NEntity other)
+    public static void SetFromProto(this GameEntity self, NEntity other)
     {
-        self.entityId = other.Id;
+        self.entityId = other.EntityId;
         self.position.SetFromProto(other.Position);
         self.direction.SetFromProto(other.Direction);
     }

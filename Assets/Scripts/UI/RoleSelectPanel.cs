@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Kirara;
 using Proto;
 using UnityEngine;
-using UnityEngine.UI;
 
 public partial class RoleSelectPanel : UIBase
 {
@@ -13,14 +10,14 @@ public partial class RoleSelectPanel : UIBase
     public class CharacterInfo
     {
         public string name;
-        public int job; // 1战士，2法师，3仙术，4游侠
+        public int jobId;
         public int level;
         public int id;
     }
 
-    private List<CharacterInfo> characterInfos = new List<CharacterInfo>();
+    private List<CharacterInfo> characterInfos = new();
 
-    private List<HeroPanel> heroPanels = new List<HeroPanel>();
+    private List<HeroPanel> heroPanels = new();
 
     private string[] jobIdToName = new string[] {"", "战士", "法师", "仙术", "游侠"};
 
@@ -83,7 +80,7 @@ public partial class RoleSelectPanel : UIBase
             newPanel.image.gameObject.SetActive(true);
 
             textNameContent.text = characterInfos[newIndex].name;
-            textJobContent.text = jobIdToName[characterInfos[newIndex].job];
+            textJobContent.text = jobIdToName[characterInfos[newIndex].jobId];
             textLevelContent.text = characterInfos[newIndex].level.ToString();
         });
 
@@ -103,9 +100,9 @@ public partial class RoleSelectPanel : UIBase
     private void OnCharacterListResponse(Connection sender, CharacterListResponse message)
     {
         characterInfos.Clear();
-        foreach (var c in message.CharacterList)
+        foreach (var c in message.NCharacters)
         {
-            characterInfos.Add(new CharacterInfo() {name = c.Name, job = c.TypeId, level = c.Level, id = c.Id});
+            characterInfos.Add(new CharacterInfo() {name = c.Name, jobId = c.JobId, level = c.Level, id = c.Id});
         }
 
         MainThread.Instance.Enqueue(() =>
@@ -113,11 +110,11 @@ public partial class RoleSelectPanel : UIBase
             choiceGroup.Clear();
             heroPanels.Clear();
             traAllRole.DestroyAllChildren();
-            for (int i = 0; i < characterInfos.Count; i++)
+            foreach (var characterInfo in characterInfos)
             {
                 var panel = HeroPanel.New(choiceGroup);
                 panel.transform.SetParent(traAllRole);
-                panel.SetRole(characterInfos[i].name, jobIdToName[characterInfos[i].job], characterInfos[i].level);
+                panel.SetRole(characterInfo.name, jobIdToName[characterInfo.jobId], characterInfo.level);
                 heroPanels.Add(panel);
             }
         });

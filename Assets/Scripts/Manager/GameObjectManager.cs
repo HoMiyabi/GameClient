@@ -19,7 +19,7 @@ namespace Manager
             if (gameEntity != null)
             {
                 gameEntity.isMine = false;
-                gameEntity.SetFromProto(nCharacter.Entity);
+                gameEntity.SetFromProto(nCharacter.NEntity);
                 gameEntity.SyncToTransform();
             }
         }

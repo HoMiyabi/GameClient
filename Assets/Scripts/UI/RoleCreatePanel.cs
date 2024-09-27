@@ -23,7 +23,7 @@ public partial class RoleCreatePanel : UIBase
         CharacterCreateRequest request = new()
         {
             Name = inputRoleName.text,
-            JobType = choiceGroup.chosenIndex + 1,
+            JobId = choiceGroup.chosenIndex + 1,
         };
         NetClient.Send(request);
     }

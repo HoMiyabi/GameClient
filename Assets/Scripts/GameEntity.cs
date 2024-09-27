@@ -17,8 +17,8 @@ public class GameEntity : MonoBehaviour
             {
                 Entity = new NEntity
                 {
-                    Position = new NVector3(),
-                    Direction = new NVector3(),
+                    Position = new NInt3(),
+                    Direction = new NInt3(),
                 },
             },
         };
