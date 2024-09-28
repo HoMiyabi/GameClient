@@ -14,20 +14,21 @@ public class PlayerController : MonoBehaviour
 
     private InputControls input;
 
-    public float jumpForce = 15000;
+    private CharacterController characterController;
+
+    public float fallSpeed = 0f;
+    public float fallSpeedMax = 30f;
+
+    private float verticalVelocity = 0f;
+    public float verticalVelocityMin = -30f;
+
+    public float jumpSpeed = 8f;
 
     private void Awake()
     {
+        characterController = GetComponent<CharacterController>();
         heroAnimations = GetComponent<HeroAnimations>();
         input = new InputControls();
-        input.Player.Jump.started += context =>
-        {
-            var _rigidbody = GetComponent<Rigidbody>();
-            if (_rigidbody != null)
-            {
-                _rigidbody.AddForce(Vector3.up * jumpForce);
-            }
-        };
     }
 
     private void OnEnable()
@@ -35,13 +36,36 @@ public class PlayerController : MonoBehaviour
         input.Player.Enable();
     }
 
-    private void Disable()
+    private void OnDisable()
     {
         input.Player.Disable();
     }
 
+    private void Gravity()
+    {
+        if (characterController.isGrounded)
+        {
+            if (input.Player.Jump.IsPressed())
+            {
+                verticalVelocity = jumpSpeed;
+            }
+            else
+            {
+                verticalVelocity = -0.1f;
+            }
+        }
+        else
+        {
+            verticalVelocity += -9.8f * Time.deltaTime;
+            verticalVelocity = Mathf.Max(verticalVelocity, verticalVelocityMin);
+        }
+    }
+
     private void Update()
     {
+        Gravity();
+        characterController.Move(new Vector3(0, verticalVelocity * Time.deltaTime, 0));
+
         // Input
         bool bSpeedUp = input.Player.SpeedUp.IsPressed();
         bool bAttack = input.Player.Attack.IsPressed();
@@ -61,14 +85,14 @@ public class PlayerController : MonoBehaviour
 
         if (localMove != Vector3.zero)
         {
-            var tpCameraController = GetComponent<TPCameraController>();
+            var tpCameraController = GetComponent<ThirdPersonCameraController>();
             var rot = Quaternion.Euler(0f, tpCameraController.yaw, 0f);
             Vector3 wsMove = rot * localMove;
 
             heroAnimations.PlayRun();
             if (heroAnimations.state == HeroAnimations.HState.Run)
             {
-                transform.position += targetSpeed * Time.deltaTime * wsMove;
+                characterController.Move(targetSpeed * Time.deltaTime * wsMove);
             }
 
             // Rotate Player

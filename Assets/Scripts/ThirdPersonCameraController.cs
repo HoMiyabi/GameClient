@@ -5,7 +5,7 @@ using DG.Tweening.Plugins.Options;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TPCameraController : MonoBehaviour
+public class ThirdPersonCameraController : MonoBehaviour
 {
     [Header("跟随对象")]
     public Vector3 offset;
