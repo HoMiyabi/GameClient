@@ -23,7 +23,7 @@ namespace Kirara
             if (instance == null)
             {
                 instance = this as T;
-                DontDestroyOnLoad(gameObject);
+                DontDestroyOnLoad(transform.root);
             }
         }
     }

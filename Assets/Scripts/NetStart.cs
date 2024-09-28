@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 using Cysharp.Threading.Tasks;
 using Kirara;
 using Manager;
-using Newtonsoft.Json;
 using UnityEngine;
 using UnityEngine.UI;
 using Proto;
@@ -21,12 +17,6 @@ public class NetStart : MonoSingleton<NetStart>
     public string host = "127.0.0.1";
     public int port = 32510;
 
-    [Header("登录参数")]
-    public InputField usernameInput;
-    public InputField passwordInput;
-
-    public Button playBtn;
-    public Button connectBtn;
     public Text networkLatencyText;
 
     public Transform canvas;
@@ -34,10 +24,6 @@ public class NetStart : MonoSingleton<NetStart>
     protected override void Awake()
     {
         base.Awake();
-
-
-        // playBtn.onClick.AddListener(EnterGame);
-        connectBtn.onClick.AddListener(Connect);
 
         foreach (GameObject go in keepAlive)
         {
@@ -69,28 +55,6 @@ public class NetStart : MonoSingleton<NetStart>
 
         Connect();
     }
-
-    /// <summary>
-    /// 有角色离开地图
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="message"></param>
-    private void OnSpaceCharacterLeaveResponse(Connection sender, SpaceCharacterLeaveResponse message)
-    {
-        int entityId = message.EntityId;
-        MainThread.Instance.Enqueue(() =>
-        {
-            if (EntityManager.Instance.entityIdToGO.Remove(entityId, out var go))
-            {
-                Destroy(go);
-            }
-            else
-            {
-                Debug.LogWarning("entityIdToGO.Remove(entityId, out var go)");
-            }
-        });
-    }
-
 
     // todo))
     // 万一response对应的是上次的request，发了两次request才回复，时间有问题
@@ -124,18 +88,7 @@ public class NetStart : MonoSingleton<NetStart>
     private void OnSpaceEntitySyncResponse(Connection sender, SpaceEntitySyncResponse message)
     {
         var entity = message.EntitySync.Entity;
-        MainThread.Instance.Enqueue(() =>
-        {
-            if (EntityManager.Instance.entityIdToGO.TryGetValue(entity.EntityId, out var go))
-            {
-                var gameEntity = go.GetComponent<GameEntity>();
-                gameEntity.SetFromProto(entity);
-            }
-            else
-            {
-                Debug.LogWarning($"entityIdToGO.TryGetValue(entity.Id, out var go) id {entity.EntityId}");
-            }
-        });
+        MainThread.Instance.Enqueue(() => EntityManager.Instance.SyncEntity(entity));
     }
 
     // 加入游戏的响应结果 Entity肯定是自己
@@ -150,32 +103,9 @@ public class NetStart : MonoSingleton<NetStart>
         Debug.Log("角色信息:" + message);
 
         var character = message.Character;
-        var entity = message.Character.NEntity;
         MainThread.Instance.Enqueue(() =>
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
-
-            var hero = Instantiate(prefab);
-            EntityManager.Instance.entityIdToGO.Add(entity.EntityId, hero);
-
-            hero.name = $"Character Player EntityId={entity.EntityId}";
-            hero.layer = LayerMask.NameToLayer("Actor");
-
-            var gameEntity = hero.GetComponent<GameEntity>();
-            if (gameEntity != null)
-            {
-                gameEntity.isMine = true;
-                gameEntity.SetFromProto(entity);
-                gameEntity.SyncToTransform();
-                gameEntity.SyncRequestAsync().Forget();
-            }
-
-            var tpCameraController = hero.AddComponent<TPCameraController>();
-            tpCameraController.offset = new Vector3(0, 1, 0);
-            hero.AddComponent<PlayerController>();
-
-            DontDestroyOnLoad(hero);
-
+            GameObjectManager.Instance.CreatePlayer(character);
             SceneManager.LoadScene(DefineManager.Instance.spaceDefineDict[character.SpaceId].Resource);
         });
     }
@@ -193,6 +123,17 @@ public class NetStart : MonoSingleton<NetStart>
                 GameObjectManager.Instance.CreateCharacterObject(nCharacter);
             }
         });
+    }
+
+    /// <summary>
+    /// 有角色离开地图
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="message"></param>
+    private void OnSpaceCharacterLeaveResponse(Connection sender, SpaceCharacterLeaveResponse message)
+    {
+        int entityId = message.EntityId;
+        MainThread.Instance.Enqueue(() => EntityManager.Instance.DestroyEntity(entityId));
     }
 
     private void OnApplicationQuit()

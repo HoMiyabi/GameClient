@@ -25,44 +25,44 @@ namespace Proto {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1NZXNzYWdlLnByb3RvEgVwcm90byIoCgVOSW50MxIJCgF4GAEgASgFEgkK",
-            "AXkYAiABKAUSCQoBehgDIAEoBSJcCgdORW50aXR5EhAKCGVudGl0eUlkGAEg",
+            "AXkYAiABKAUSCQoBehgDIAEoBSJrCgdORW50aXR5EhAKCGVudGl0eUlkGAEg",
             "ASgFEh4KCHBvc2l0aW9uGAIgASgLMgwucHJvdG8uTkludDMSHwoJZGlyZWN0",
-            "aW9uGAMgASgLMgwucHJvdG8uTkludDMiUAoLTkVudGl0eVN5bmMSHgoGZW50",
-            "aXR5GAEgASgLMg4ucHJvdG8uTkVudGl0eRIhCgVzdGF0ZRgCIAEoDjISLnBy",
-            "b3RvLkVudGl0eVN0YXRlIqkBCgpOQ2hhcmFjdGVyEh8KB25FbnRpdHkYASAB",
-            "KAsyDi5wcm90by5ORW50aXR5EgoKAmlkGAIgASgFEg0KBWpvYklkGAMgASgF",
-            "EgwKBG5hbWUYBCABKAkSCgoCaHAYBSABKAUSCgoCbXAYBiABKAUSDQoFbGV2",
-            "ZWwYByABKAUSCwoDZXhwGAggASgDEg8KB3NwYWNlSWQYCSABKAUSDAoEZ29s",
-            "ZBgKIAEoAyISChBIZWFydEJlYXRSZXF1ZXN0IhMKEUhlYXJ0QmVhdFJlc3Bv",
-            "bnNlIkAKFlNwYWNlRW50aXR5U3luY1JlcXVlc3QSJgoKZW50aXR5U3luYxgB",
-            "IAEoCzISLnByb3RvLk5FbnRpdHlTeW5jIkEKF1NwYWNlRW50aXR5U3luY1Jl",
-            "c3BvbnNlEiYKCmVudGl0eVN5bmMYASABKAsyEi5wcm90by5ORW50aXR5U3lu",
-            "YyInChBHYW1lRW50ZXJSZXF1ZXN0EhMKC2NoYXJhY3RlcklkGAEgASgFIkoK",
-            "EUdhbWVFbnRlclJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSJAoJY2hhcmFj",
-            "dGVyGAIgASgLMhEucHJvdG8uTkNoYXJhY3RlciJWChxTcGFjZUNoYXJhY3Rl",
-            "cnNFbnRlclJlc3BvbnNlEg8KB3NwYWNlSWQYASABKAUSJQoKY2hhcmFjdGVy",
-            "cxgCIAMoCzIRLnByb3RvLk5DaGFyYWN0ZXIiLwobU3BhY2VDaGFyYWN0ZXJM",
-            "ZWF2ZVJlc3BvbnNlEhAKCGVudGl0eUlkGAEgASgFIjkKE1VzZXJSZWdpc3Rl",
-            "clJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAki",
-            "RgoUVXNlclJlZ2lzdGVyUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIMCgRj",
-            "b2RlGAIgASgFEg8KB21lc3NhZ2UYAyABKAkiNgoQVXNlckxvZ2luUmVxdWVz",
-            "dBIQCgh1c2VybmFtZRgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSJDChFVc2Vy",
-            "TG9naW5SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEgwKBGNvZGUYAiABKAUS",
-            "DwoHbWVzc2FnZRgDIAEoCSIWChRDaGFyYWN0ZXJMaXN0UmVxdWVzdCI/ChVD",
-            "aGFyYWN0ZXJMaXN0UmVzcG9uc2USJgoLbkNoYXJhY3RlcnMYASADKAsyES5w",
-            "cm90by5OQ2hhcmFjdGVyIjUKFkNoYXJhY3RlckNyZWF0ZVJlcXVlc3QSDAoE",
-            "bmFtZRgBIAEoCRINCgVqb2JJZBgCIAEoBSJhChdDaGFyYWN0ZXJDcmVhdGVS",
-            "ZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg8KB21lc3NhZ2UYAiABKAkSJAoJ",
-            "Y2hhcmFjdGVyGAMgASgLMhEucHJvdG8uTkNoYXJhY3RlciItChZDaGFyYWN0",
-            "ZXJEZWxldGVSZXF1ZXN0EhMKC2NoYXJhY3RlcklkGAEgASgFIjsKF0NoYXJh",
-            "Y3RlckRlbGV0ZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgSDwoHbWVzc2Fn",
-            "ZRgCIAEoCSo1CgtFbnRpdHlTdGF0ZRIICgROT05FEAASCAoESURMRRABEggK",
-            "BE1PVkUQAhIICgRKVU1QEANiBnByb3RvMw=="));
+            "aW9uGAMgASgLMgwucHJvdG8uTkludDMSDQoFc3BlZWQYBCABKAUiUAoLTkVu",
+            "dGl0eVN5bmMSHgoGZW50aXR5GAEgASgLMg4ucHJvdG8uTkVudGl0eRIhCgVz",
+            "dGF0ZRgCIAEoDjISLnByb3RvLkVudGl0eVN0YXRlIqkBCgpOQ2hhcmFjdGVy",
+            "Eh8KB25FbnRpdHkYASABKAsyDi5wcm90by5ORW50aXR5EgoKAmlkGAIgASgF",
+            "Eg0KBWpvYklkGAMgASgFEgwKBG5hbWUYBCABKAkSCgoCaHAYBSABKAUSCgoC",
+            "bXAYBiABKAUSDQoFbGV2ZWwYByABKAUSCwoDZXhwGAggASgDEg8KB3NwYWNl",
+            "SWQYCSABKAUSDAoEZ29sZBgKIAEoAyISChBIZWFydEJlYXRSZXF1ZXN0IhMK",
+            "EUhlYXJ0QmVhdFJlc3BvbnNlIkAKFlNwYWNlRW50aXR5U3luY1JlcXVlc3QS",
+            "JgoKZW50aXR5U3luYxgBIAEoCzISLnByb3RvLk5FbnRpdHlTeW5jIkEKF1Nw",
+            "YWNlRW50aXR5U3luY1Jlc3BvbnNlEiYKCmVudGl0eVN5bmMYASABKAsyEi5w",
+            "cm90by5ORW50aXR5U3luYyInChBHYW1lRW50ZXJSZXF1ZXN0EhMKC2NoYXJh",
+            "Y3RlcklkGAEgASgFIkoKEUdhbWVFbnRlclJlc3BvbnNlEg8KB3N1Y2Nlc3MY",
+            "ASABKAgSJAoJY2hhcmFjdGVyGAIgASgLMhEucHJvdG8uTkNoYXJhY3RlciJW",
+            "ChxTcGFjZUNoYXJhY3RlcnNFbnRlclJlc3BvbnNlEg8KB3NwYWNlSWQYASAB",
+            "KAUSJQoKY2hhcmFjdGVycxgCIAMoCzIRLnByb3RvLk5DaGFyYWN0ZXIiLwob",
+            "U3BhY2VDaGFyYWN0ZXJMZWF2ZVJlc3BvbnNlEhAKCGVudGl0eUlkGAEgASgF",
+            "IjkKE1VzZXJSZWdpc3RlclJlcXVlc3QSEAoIdXNlcm5hbWUYASABKAkSEAoI",
+            "cGFzc3dvcmQYAiABKAkiRgoUVXNlclJlZ2lzdGVyUmVzcG9uc2USDwoHc3Vj",
+            "Y2VzcxgBIAEoCBIMCgRjb2RlGAIgASgFEg8KB21lc3NhZ2UYAyABKAkiNgoQ",
+            "VXNlckxvZ2luUmVxdWVzdBIQCgh1c2VybmFtZRgBIAEoCRIQCghwYXNzd29y",
+            "ZBgCIAEoCSJDChFVc2VyTG9naW5SZXNwb25zZRIPCgdzdWNjZXNzGAEgASgI",
+            "EgwKBGNvZGUYAiABKAUSDwoHbWVzc2FnZRgDIAEoCSIWChRDaGFyYWN0ZXJM",
+            "aXN0UmVxdWVzdCI/ChVDaGFyYWN0ZXJMaXN0UmVzcG9uc2USJgoLbkNoYXJh",
+            "Y3RlcnMYASADKAsyES5wcm90by5OQ2hhcmFjdGVyIjUKFkNoYXJhY3RlckNy",
+            "ZWF0ZVJlcXVlc3QSDAoEbmFtZRgBIAEoCRINCgVqb2JJZBgCIAEoBSJhChdD",
+            "aGFyYWN0ZXJDcmVhdGVSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg8KB21l",
+            "c3NhZ2UYAiABKAkSJAoJY2hhcmFjdGVyGAMgASgLMhEucHJvdG8uTkNoYXJh",
+            "Y3RlciItChZDaGFyYWN0ZXJEZWxldGVSZXF1ZXN0EhMKC2NoYXJhY3Rlcklk",
+            "GAEgASgFIjsKF0NoYXJhY3RlckRlbGV0ZVJlc3BvbnNlEg8KB3N1Y2Nlc3MY",
+            "ASABKAgSDwoHbWVzc2FnZRgCIAEoCSo1CgtFbnRpdHlTdGF0ZRIICgROT05F",
+            "EAASCAoESURMRRABEggKBE1PVkUQAhIICgRKVU1QEANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.EntityState), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NInt3), global::Proto.NInt3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntity), global::Proto.NEntity.Parser, new[]{ "EntityId", "Position", "Direction" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntity), global::Proto.NEntity.Parser, new[]{ "EntityId", "Position", "Direction", "Speed" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntitySync), global::Proto.NEntitySync.Parser, new[]{ "Entity", "State" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NCharacter), global::Proto.NCharacter.Parser, new[]{ "NEntity", "Id", "JobId", "Name", "Hp", "Mp", "Level", "Exp", "SpaceId", "Gold" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeartBeatRequest), global::Proto.HeartBeatRequest.Parser, null, null, null, null, null),
@@ -409,6 +409,7 @@ namespace Proto {
       entityId_ = other.entityId_;
       position_ = other.position_ != null ? other.position_.Clone() : null;
       direction_ = other.direction_ != null ? other.direction_.Clone() : null;
+      speed_ = other.speed_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -454,6 +455,18 @@ namespace Proto {
       }
     }
 
+    /// <summary>Field number for the "speed" field.</summary>
+    public const int SpeedFieldNumber = 4;
+    private int speed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Speed {
+      get { return speed_; }
+      set {
+        speed_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -472,6 +485,7 @@ namespace Proto {
       if (EntityId != other.EntityId) return false;
       if (!object.Equals(Position, other.Position)) return false;
       if (!object.Equals(Direction, other.Direction)) return false;
+      if (Speed != other.Speed) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -482,6 +496,7 @@ namespace Proto {
       if (EntityId != 0) hash ^= EntityId.GetHashCode();
       if (position_ != null) hash ^= Position.GetHashCode();
       if (direction_ != null) hash ^= Direction.GetHashCode();
+      if (Speed != 0) hash ^= Speed.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -512,6 +527,10 @@ namespace Proto {
         output.WriteRawTag(26);
         output.WriteMessage(Direction);
       }
+      if (Speed != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Speed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -534,6 +553,10 @@ namespace Proto {
         output.WriteRawTag(26);
         output.WriteMessage(Direction);
       }
+      if (Speed != 0) {
+        output.WriteRawTag(32);
+        output.WriteInt32(Speed);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -552,6 +575,9 @@ namespace Proto {
       }
       if (direction_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Direction);
+      }
+      if (Speed != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Speed);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -579,6 +605,9 @@ namespace Proto {
           Direction = new global::Proto.NInt3();
         }
         Direction.MergeFrom(other.Direction);
+      }
+      if (other.Speed != 0) {
+        Speed = other.Speed;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -617,6 +646,10 @@ namespace Proto {
             input.ReadMessage(Direction);
             break;
           }
+          case 32: {
+            Speed = input.ReadInt32();
+            break;
+          }
         }
       }
     #endif
@@ -652,6 +685,10 @@ namespace Proto {
               Direction = new global::Proto.NInt3();
             }
             input.ReadMessage(Direction);
+            break;
+          }
+          case 32: {
+            Speed = input.ReadInt32();
             break;
           }
         }
