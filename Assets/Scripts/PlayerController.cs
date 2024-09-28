@@ -16,9 +16,6 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController characterController;
 
-    public float fallSpeed = 0f;
-    public float fallSpeedMax = 30f;
-
     private float verticalVelocity = 0f;
     public float verticalVelocityMin = -30f;
 

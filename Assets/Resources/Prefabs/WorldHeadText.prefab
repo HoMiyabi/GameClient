@@ -93,4 +93,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   follow: {fileID: 0}
-  offset: {x: 0, y: 1.6, z: 0}
+  offset: {x: 0, y: 1.7, z: 0}

@@ -1,9 +1,4 @@
-﻿using System;
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
 public class ThirdPersonCameraController : MonoBehaviour
 {
@@ -14,13 +9,13 @@ public class ThirdPersonCameraController : MonoBehaviour
     public float mouseSensitivity = 6f;
     public float pitchSensitivity = 0.022f;
     public float yawSensitivity = 0.022f;
-    public float distanceSensitivity = 1f;
 
     [Header("距离")]
-    public float targetDistance = 5f;
-    public float curDistance = 5f;
-    public float minDistance = 2f;
-    public float maxDistance = 8f;
+    public float targetDistance = 4f;
+    public float curDistance = 4f;
+    public float minDistance = 0.5f;
+    public float maxDistance = 7.5f;
+    public float distanceAdjustStep = 0.5f;
     public float distanceAdjustSpeed = 15f;
 
     [Header("旋转")]
@@ -74,6 +69,31 @@ public class ThirdPersonCameraController : MonoBehaviour
             Camera.MonoOrStereoscopicEye.Mono, nearCorners);
     }
 
+    private void PitchYaw(float dx, float dy)
+    {
+        // Pitch
+        pitch += -dy * pitchSensitivity * mouseSensitivity;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        // Yaw
+        yaw += dx * yawSensitivity * mouseSensitivity;
+        while (yaw < -180f)
+        {
+            yaw += 360f;
+        }
+        while (yaw > 180f)
+        {
+            yaw -= 360f;
+        }
+    }
+
+    private void Distance(float dZoom)
+    {
+        targetDistance -= dZoom * distanceAdjustStep;
+        targetDistance = Mathf.Clamp(targetDistance, minDistance, maxDistance);
+        curDistance = Mathf.Lerp(curDistance, targetDistance, Time.deltaTime * distanceAdjustSpeed);
+    }
+
     public void LateUpdate()
     {
         if (_camera == null)
@@ -108,35 +128,8 @@ public class ThirdPersonCameraController : MonoBehaviour
         float dy = dRot.y;
         float dx = dRot.x;
 
-        // Pitch
-        pitch += -dy * pitchSensitivity * mouseSensitivity;
-        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
-
-        // Yaw
-        yaw += dx * yawSensitivity * mouseSensitivity;
-        while (yaw < -180f)
-        {
-            yaw += 360f;
-        }
-        while (yaw > 180f)
-        {
-            yaw -= 360f;
-        }
-
-        // Distance
-        // float newTargetDistance;
-        // newTargetDistance = targetDistance - dZoom * distanceSensitivity;
-        // newTargetDistance = Mathf.Clamp(newTargetDistance, minDistance, maxDistance);
-        // if (Mathf.Abs(newTargetDistance - targetDistance) > Mathf.Epsilon)
-        // {
-        //     targetDistance = newTargetDistance;
-        //     zoomTweener?.Kill();
-        //     zoomTweener = DOTween.To(() => curDistance, x => curDistance = x,
-        //         targetDistance, zoomDuration);
-        // }
-        targetDistance -= dZoom * distanceSensitivity;
-        targetDistance = Mathf.Clamp(targetDistance, minDistance, maxDistance);
-        curDistance = Mathf.Lerp(curDistance, targetDistance, Time.deltaTime * distanceAdjustSpeed);
+        PitchYaw(dx, dy);
+        Distance(dZoom);
 
         // Rotation
         _camera.transform.rotation = Quaternion.Euler(pitch, yaw, 0f);

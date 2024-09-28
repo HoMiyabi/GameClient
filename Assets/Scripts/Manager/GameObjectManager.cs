@@ -9,7 +9,7 @@ namespace Manager
     {
         public void CreateCharacterObject(NCharacter nCharacter)
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/DogPBR");
+            var prefab = Resources.Load<GameObject>("Prefabs/diona");
             var other = Object.Instantiate(prefab);
             EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, other);
 
@@ -34,7 +34,7 @@ namespace Manager
 
         public void CreatePlayer(NCharacter nCharacter)
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/DogPBRPlayer");
+            var prefab = Resources.Load<GameObject>("Prefabs/kirara");
 
             var hero = Object.Instantiate(prefab);
             EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, hero);
