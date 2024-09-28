@@ -26,8 +26,8 @@ namespace Manager
             if (entityIdToGO.TryGetValue(nEntity.EntityId, out var go))
             {
                 var gameEntity = go.GetComponent<GameEntity>();
-                gameEntity.SetFromProto(nEntity);
-                Debug.Log($"同步 NEntity={nEntity}");
+                gameEntity.position.Set(nEntity.Position);
+                gameEntity.direction.Set(nEntity.Direction);
             }
             else
             {

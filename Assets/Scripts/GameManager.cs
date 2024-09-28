@@ -43,7 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
             }
             else
             {
-                Screen.SetResolution(resolution.x, resolution.y, FullScreenMode.FullScreenWindow);
+                Screen.SetResolution(resolution.x, resolution.y, FullScreenMode.Windowed);
             }
         });
     }

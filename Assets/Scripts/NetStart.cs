@@ -100,7 +100,7 @@ public class NetStart : MonoSingleton<NetStart>
             Debug.LogWarning("进入失败");
         }
 
-        Debug.Log("角色信息:" + message);
+        Debug.Log("自己进入地图 " + message);
 
         var character = message.Character;
         MainThread.Instance.Enqueue(() =>
@@ -113,7 +113,7 @@ public class NetStart : MonoSingleton<NetStart>
     // 当有角色进入地图的通知 肯定不是自己
     private void OnSpaceCharactersEnterResponse(Connection conn, SpaceCharactersEnterResponse message)
     {
-        Debug.Log("角色进入地图 " + message);
+        Debug.Log("其他人进入地图 " + message);
         var characters = message.Characters;
 
         MainThread.Instance.Enqueue(() =>

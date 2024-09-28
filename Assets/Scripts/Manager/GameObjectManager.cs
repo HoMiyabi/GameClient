@@ -20,7 +20,7 @@ namespace Manager
             if (gameEntity != null)
             {
                 gameEntity.isMine = false;
-                gameEntity.SetFromProto(nCharacter.NEntity);
+                gameEntity.Set(nCharacter.NEntity);
                 gameEntity.SyncToTransform();
             }
 
@@ -46,7 +46,7 @@ namespace Manager
             if (gameEntity != null)
             {
                 gameEntity.isMine = true;
-                gameEntity.SetFromProto(nCharacter.NEntity);
+                gameEntity.Set(nCharacter.NEntity);
                 gameEntity.SyncToTransform();
                 gameEntity.SyncRequestAsync().Forget();
             }

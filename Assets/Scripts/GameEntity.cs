@@ -17,8 +17,9 @@ public class GameEntity : MonoBehaviour
             {
                 Entity = new NEntity
                 {
-                    Position = new NInt3(),
-                    Direction = new NInt3(),
+                    EntityId = entityId,
+                    Position = new NFloat3(),
+                    Direction = new NFloat3(),
                 },
             },
         };
@@ -29,7 +30,8 @@ public class GameEntity : MonoBehaviour
 
             if (transform.hasChanged)
             {
-                request.EntitySync.Entity.SetFromNative(this);
+                request.EntitySync.Entity.Position.Set(position);
+                request.EntitySync.Entity.Direction.Set(direction);
                 // print(request);
                 NetClient.Send(request);
                 transform.hasChanged = false;
@@ -69,5 +71,12 @@ public class GameEntity : MonoBehaviour
     {
         position = transform.position;
         direction = transform.rotation.eulerAngles;
+    }
+
+    public void Set(NEntity nEntity)
+    {
+        entityId = nEntity.EntityId;
+        position.Set(nEntity.Position);
+        direction.Set(nEntity.Direction);
     }
 }
