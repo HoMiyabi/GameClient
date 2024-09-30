@@ -7,7 +7,7 @@ namespace Kirara
     {
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.root);
         }
     }
 }

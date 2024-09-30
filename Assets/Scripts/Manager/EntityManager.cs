@@ -21,13 +21,22 @@ namespace Manager
             }
         }
 
-        public void SyncEntity(NEntity nEntity)
+        public void SyncEntity(NEntitySync nEntitySync)
         {
+            var nEntity = nEntitySync.NEntity;
             if (entityIdToGO.TryGetValue(nEntity.EntityId, out var go))
             {
                 var gameEntity = go.GetComponent<GameEntity>();
-                gameEntity.position.Set(nEntity.Position);
-                gameEntity.direction.Set(nEntity.Direction);
+                if (gameEntity != null)
+                {
+                    gameEntity.position.Set(nEntity.Position);
+                    gameEntity.direction.Set(nEntity.Direction);
+                }
+                var playerEntity = go.GetComponent<PlayerEntity>();
+                if (playerEntity != null)
+                {
+                    playerEntity.Set(nEntity);
+                }
             }
             else
             {

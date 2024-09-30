@@ -28,51 +28,51 @@ namespace Proto {
             "CQoBeRgCIAEoAhIJCgF6GAMgASgCIm8KB05FbnRpdHkSEAoIZW50aXR5SWQY",
             "ASABKAUSIAoIcG9zaXRpb24YAiABKAsyDi5wcm90by5ORmxvYXQzEiEKCWRp",
             "cmVjdGlvbhgDIAEoCzIOLnByb3RvLk5GbG9hdDMSDQoFc3BlZWQYBCABKAUi",
-            "UAoLTkVudGl0eVN5bmMSHgoGZW50aXR5GAEgASgLMg4ucHJvdG8uTkVudGl0",
-            "eRIhCgVzdGF0ZRgCIAEoDjISLnByb3RvLkVudGl0eVN0YXRlIqkBCgpOQ2hh",
-            "cmFjdGVyEh8KB25FbnRpdHkYASABKAsyDi5wcm90by5ORW50aXR5EgoKAmlk",
-            "GAIgASgFEg0KBWpvYklkGAMgASgFEgwKBG5hbWUYBCABKAkSCgoCaHAYBSAB",
-            "KAUSCgoCbXAYBiABKAUSDQoFbGV2ZWwYByABKAUSCwoDZXhwGAggASgDEg8K",
-            "B3NwYWNlSWQYCSABKAUSDAoEZ29sZBgKIAEoAyISChBIZWFydEJlYXRSZXF1",
-            "ZXN0IhMKEUhlYXJ0QmVhdFJlc3BvbnNlIkAKFlNwYWNlRW50aXR5U3luY1Jl",
-            "cXVlc3QSJgoKZW50aXR5U3luYxgBIAEoCzISLnByb3RvLk5FbnRpdHlTeW5j",
-            "IkEKF1NwYWNlRW50aXR5U3luY1Jlc3BvbnNlEiYKCmVudGl0eVN5bmMYASAB",
-            "KAsyEi5wcm90by5ORW50aXR5U3luYyInChBHYW1lRW50ZXJSZXF1ZXN0EhMK",
-            "C2NoYXJhY3RlcklkGAEgASgFIkoKEUdhbWVFbnRlclJlc3BvbnNlEg8KB3N1",
-            "Y2Nlc3MYASABKAgSJAoJY2hhcmFjdGVyGAIgASgLMhEucHJvdG8uTkNoYXJh",
-            "Y3RlciJWChxTcGFjZUNoYXJhY3RlcnNFbnRlclJlc3BvbnNlEg8KB3NwYWNl",
-            "SWQYASABKAUSJQoKY2hhcmFjdGVycxgCIAMoCzIRLnByb3RvLk5DaGFyYWN0",
-            "ZXIiLwobU3BhY2VDaGFyYWN0ZXJMZWF2ZVJlc3BvbnNlEhAKCGVudGl0eUlk",
-            "GAEgASgFIjkKE1VzZXJSZWdpc3RlclJlcXVlc3QSEAoIdXNlcm5hbWUYASAB",
-            "KAkSEAoIcGFzc3dvcmQYAiABKAkiRgoUVXNlclJlZ2lzdGVyUmVzcG9uc2US",
-            "DwoHc3VjY2VzcxgBIAEoCBIMCgRjb2RlGAIgASgFEg8KB21lc3NhZ2UYAyAB",
-            "KAkiNgoQVXNlckxvZ2luUmVxdWVzdBIQCgh1c2VybmFtZRgBIAEoCRIQCghw",
-            "YXNzd29yZBgCIAEoCSJDChFVc2VyTG9naW5SZXNwb25zZRIPCgdzdWNjZXNz",
-            "GAEgASgIEgwKBGNvZGUYAiABKAUSDwoHbWVzc2FnZRgDIAEoCSIWChRDaGFy",
-            "YWN0ZXJMaXN0UmVxdWVzdCI/ChVDaGFyYWN0ZXJMaXN0UmVzcG9uc2USJgoL",
-            "bkNoYXJhY3RlcnMYASADKAsyES5wcm90by5OQ2hhcmFjdGVyIjUKFkNoYXJh",
-            "Y3RlckNyZWF0ZVJlcXVlc3QSDAoEbmFtZRgBIAEoCRINCgVqb2JJZBgCIAEo",
-            "BSJhChdDaGFyYWN0ZXJDcmVhdGVSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgI",
-            "Eg8KB21lc3NhZ2UYAiABKAkSJAoJY2hhcmFjdGVyGAMgASgLMhEucHJvdG8u",
-            "TkNoYXJhY3RlciItChZDaGFyYWN0ZXJEZWxldGVSZXF1ZXN0EhMKC2NoYXJh",
-            "Y3RlcklkGAEgASgFIjsKF0NoYXJhY3RlckRlbGV0ZVJlc3BvbnNlEg8KB3N1",
-            "Y2Nlc3MYASABKAgSDwoHbWVzc2FnZRgCIAEoCSo1CgtFbnRpdHlTdGF0ZRII",
-            "CgROT05FEAASCAoESURMRRABEggKBE1PVkUQAhIICgRKVU1QEANiBnByb3Rv",
-            "Mw=="));
+            "YAoLTkVudGl0eVN5bmMSHwoHbkVudGl0eRgBIAEoCzIOLnByb3RvLk5FbnRp",
+            "dHkSIQoFc3RhdGUYAiABKA4yEi5wcm90by5FbnRpdHlTdGF0ZRINCgVmb3Jj",
+            "ZRgDIAEoCCKpAQoKTkNoYXJhY3RlchIfCgduRW50aXR5GAEgASgLMg4ucHJv",
+            "dG8uTkVudGl0eRIKCgJpZBgCIAEoBRINCgVqb2JJZBgDIAEoBRIMCgRuYW1l",
+            "GAQgASgJEgoKAmhwGAUgASgFEgoKAm1wGAYgASgFEg0KBWxldmVsGAcgASgF",
+            "EgsKA2V4cBgIIAEoAxIPCgdzcGFjZUlkGAkgASgFEgwKBGdvbGQYCiABKAMi",
+            "EgoQSGVhcnRCZWF0UmVxdWVzdCITChFIZWFydEJlYXRSZXNwb25zZSJAChZT",
+            "cGFjZUVudGl0eVN5bmNSZXF1ZXN0EiYKCmVudGl0eVN5bmMYASABKAsyEi5w",
+            "cm90by5ORW50aXR5U3luYyJBChdTcGFjZUVudGl0eVN5bmNSZXNwb25zZRIm",
+            "CgplbnRpdHlTeW5jGAEgASgLMhIucHJvdG8uTkVudGl0eVN5bmMiJwoQR2Ft",
+            "ZUVudGVyUmVxdWVzdBITCgtjaGFyYWN0ZXJJZBgBIAEoBSJLChFHYW1lRW50",
+            "ZXJSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEiUKCm5DaGFyYWN0ZXIYAiAB",
+            "KAsyES5wcm90by5OQ2hhcmFjdGVyIlcKHFNwYWNlQ2hhcmFjdGVyc0VudGVy",
+            "UmVzcG9uc2USDwoHc3BhY2VJZBgBIAEoBRImCgtuQ2hhcmFjdGVycxgCIAMo",
+            "CzIRLnByb3RvLk5DaGFyYWN0ZXIiLwobU3BhY2VDaGFyYWN0ZXJMZWF2ZVJl",
+            "c3BvbnNlEhAKCGVudGl0eUlkGAEgASgFIjkKE1VzZXJSZWdpc3RlclJlcXVl",
+            "c3QSEAoIdXNlcm5hbWUYASABKAkSEAoIcGFzc3dvcmQYAiABKAkiRgoUVXNl",
+            "clJlZ2lzdGVyUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCBIMCgRjb2RlGAIg",
+            "ASgFEg8KB21lc3NhZ2UYAyABKAkiNgoQVXNlckxvZ2luUmVxdWVzdBIQCgh1",
+            "c2VybmFtZRgBIAEoCRIQCghwYXNzd29yZBgCIAEoCSJDChFVc2VyTG9naW5S",
+            "ZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEgwKBGNvZGUYAiABKAUSDwoHbWVz",
+            "c2FnZRgDIAEoCSIWChRDaGFyYWN0ZXJMaXN0UmVxdWVzdCI/ChVDaGFyYWN0",
+            "ZXJMaXN0UmVzcG9uc2USJgoLbkNoYXJhY3RlcnMYASADKAsyES5wcm90by5O",
+            "Q2hhcmFjdGVyIjUKFkNoYXJhY3RlckNyZWF0ZVJlcXVlc3QSDAoEbmFtZRgB",
+            "IAEoCRINCgVqb2JJZBgCIAEoBSJiChdDaGFyYWN0ZXJDcmVhdGVSZXNwb25z",
+            "ZRIPCgdzdWNjZXNzGAEgASgIEg8KB21lc3NhZ2UYAiABKAkSJQoKbkNoYXJh",
+            "Y3RlchgDIAEoCzIRLnByb3RvLk5DaGFyYWN0ZXIiLQoWQ2hhcmFjdGVyRGVs",
+            "ZXRlUmVxdWVzdBITCgtjaGFyYWN0ZXJJZBgBIAEoBSI7ChdDaGFyYWN0ZXJE",
+            "ZWxldGVSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIEg8KB21lc3NhZ2UYAiAB",
+            "KAkqNQoLRW50aXR5U3RhdGUSCAoETk9ORRAAEggKBElETEUQARIICgRNT1ZF",
+            "EAISCAoESlVNUBADYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Proto.EntityState), }, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NFloat3), global::Proto.NFloat3.Parser, new[]{ "X", "Y", "Z" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntity), global::Proto.NEntity.Parser, new[]{ "EntityId", "Position", "Direction", "Speed" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntitySync), global::Proto.NEntitySync.Parser, new[]{ "Entity", "State" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NEntitySync), global::Proto.NEntitySync.Parser, new[]{ "NEntity", "State", "Force" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.NCharacter), global::Proto.NCharacter.Parser, new[]{ "NEntity", "Id", "JobId", "Name", "Hp", "Mp", "Level", "Exp", "SpaceId", "Gold" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeartBeatRequest), global::Proto.HeartBeatRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.HeartBeatResponse), global::Proto.HeartBeatResponse.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SpaceEntitySyncRequest), global::Proto.SpaceEntitySyncRequest.Parser, new[]{ "EntitySync" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SpaceEntitySyncResponse), global::Proto.SpaceEntitySyncResponse.Parser, new[]{ "EntitySync" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameEnterRequest), global::Proto.GameEnterRequest.Parser, new[]{ "CharacterId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameEnterResponse), global::Proto.GameEnterResponse.Parser, new[]{ "Success", "Character" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SpaceCharactersEnterResponse), global::Proto.SpaceCharactersEnterResponse.Parser, new[]{ "SpaceId", "Characters" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.GameEnterResponse), global::Proto.GameEnterResponse.Parser, new[]{ "Success", "NCharacter" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SpaceCharactersEnterResponse), global::Proto.SpaceCharactersEnterResponse.Parser, new[]{ "SpaceId", "NCharacters" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.SpaceCharacterLeaveResponse), global::Proto.SpaceCharacterLeaveResponse.Parser, new[]{ "EntityId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.UserRegisterRequest), global::Proto.UserRegisterRequest.Parser, new[]{ "Username", "Password" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.UserRegisterResponse), global::Proto.UserRegisterResponse.Parser, new[]{ "Success", "Code", "Message" }, null, null, null, null),
@@ -81,7 +81,7 @@ namespace Proto {
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterListRequest), global::Proto.CharacterListRequest.Parser, null, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterListResponse), global::Proto.CharacterListResponse.Parser, new[]{ "NCharacters" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterCreateRequest), global::Proto.CharacterCreateRequest.Parser, new[]{ "Name", "JobId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterCreateResponse), global::Proto.CharacterCreateResponse.Parser, new[]{ "Success", "Message", "Character" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterCreateResponse), global::Proto.CharacterCreateResponse.Parser, new[]{ "Success", "Message", "NCharacter" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterDeleteRequest), global::Proto.CharacterDeleteRequest.Parser, new[]{ "CharacterId" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Proto.CharacterDeleteResponse), global::Proto.CharacterDeleteResponse.Parser, new[]{ "Success", "Message" }, null, null, null, null)
           }));
@@ -734,8 +734,9 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public NEntitySync(NEntitySync other) : this() {
-      entity_ = other.entity_ != null ? other.entity_.Clone() : null;
+      nEntity_ = other.nEntity_ != null ? other.nEntity_.Clone() : null;
       state_ = other.state_;
+      force_ = other.force_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -745,15 +746,15 @@ namespace Proto {
       return new NEntitySync(this);
     }
 
-    /// <summary>Field number for the "entity" field.</summary>
-    public const int EntityFieldNumber = 1;
-    private global::Proto.NEntity entity_;
+    /// <summary>Field number for the "nEntity" field.</summary>
+    public const int NEntityFieldNumber = 1;
+    private global::Proto.NEntity nEntity_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Proto.NEntity Entity {
-      get { return entity_; }
+    public global::Proto.NEntity NEntity {
+      get { return nEntity_; }
       set {
-        entity_ = value;
+        nEntity_ = value;
       }
     }
 
@@ -766,6 +767,18 @@ namespace Proto {
       get { return state_; }
       set {
         state_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "force" field.</summary>
+    public const int ForceFieldNumber = 3;
+    private bool force_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Force {
+      get { return force_; }
+      set {
+        force_ = value;
       }
     }
 
@@ -784,8 +797,9 @@ namespace Proto {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (!object.Equals(Entity, other.Entity)) return false;
+      if (!object.Equals(NEntity, other.NEntity)) return false;
       if (State != other.State) return false;
+      if (Force != other.Force) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -793,8 +807,9 @@ namespace Proto {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (entity_ != null) hash ^= Entity.GetHashCode();
+      if (nEntity_ != null) hash ^= NEntity.GetHashCode();
       if (State != global::Proto.EntityState.None) hash ^= State.GetHashCode();
+      if (Force != false) hash ^= Force.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -813,13 +828,17 @@ namespace Proto {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (entity_ != null) {
+      if (nEntity_ != null) {
         output.WriteRawTag(10);
-        output.WriteMessage(Entity);
+        output.WriteMessage(NEntity);
       }
       if (State != global::Proto.EntityState.None) {
         output.WriteRawTag(16);
         output.WriteEnum((int) State);
+      }
+      if (Force != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Force);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -831,13 +850,17 @@ namespace Proto {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (entity_ != null) {
+      if (nEntity_ != null) {
         output.WriteRawTag(10);
-        output.WriteMessage(Entity);
+        output.WriteMessage(NEntity);
       }
       if (State != global::Proto.EntityState.None) {
         output.WriteRawTag(16);
         output.WriteEnum((int) State);
+      }
+      if (Force != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Force);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -849,11 +872,14 @@ namespace Proto {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (entity_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Entity);
+      if (nEntity_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NEntity);
       }
       if (State != global::Proto.EntityState.None) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) State);
+      }
+      if (Force != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -867,14 +893,17 @@ namespace Proto {
       if (other == null) {
         return;
       }
-      if (other.entity_ != null) {
-        if (entity_ == null) {
-          Entity = new global::Proto.NEntity();
+      if (other.nEntity_ != null) {
+        if (nEntity_ == null) {
+          NEntity = new global::Proto.NEntity();
         }
-        Entity.MergeFrom(other.Entity);
+        NEntity.MergeFrom(other.NEntity);
       }
       if (other.State != global::Proto.EntityState.None) {
         State = other.State;
+      }
+      if (other.Force != false) {
+        Force = other.Force;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -896,14 +925,18 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            if (entity_ == null) {
-              Entity = new global::Proto.NEntity();
+            if (nEntity_ == null) {
+              NEntity = new global::Proto.NEntity();
             }
-            input.ReadMessage(Entity);
+            input.ReadMessage(NEntity);
             break;
           }
           case 16: {
             State = (global::Proto.EntityState) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            Force = input.ReadBool();
             break;
           }
         }
@@ -926,14 +959,18 @@ namespace Proto {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            if (entity_ == null) {
-              Entity = new global::Proto.NEntity();
+            if (nEntity_ == null) {
+              NEntity = new global::Proto.NEntity();
             }
-            input.ReadMessage(Entity);
+            input.ReadMessage(NEntity);
             break;
           }
           case 16: {
             State = (global::Proto.EntityState) input.ReadEnum();
+            break;
+          }
+          case 24: {
+            Force = input.ReadBool();
             break;
           }
         }
@@ -2453,7 +2490,7 @@ namespace Proto {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public GameEnterResponse(GameEnterResponse other) : this() {
       success_ = other.success_;
-      character_ = other.character_ != null ? other.character_.Clone() : null;
+      nCharacter_ = other.nCharacter_ != null ? other.nCharacter_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2475,15 +2512,15 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "character" field.</summary>
-    public const int CharacterFieldNumber = 2;
-    private global::Proto.NCharacter character_;
+    /// <summary>Field number for the "nCharacter" field.</summary>
+    public const int NCharacterFieldNumber = 2;
+    private global::Proto.NCharacter nCharacter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Proto.NCharacter Character {
-      get { return character_; }
+    public global::Proto.NCharacter NCharacter {
+      get { return nCharacter_; }
       set {
-        character_ = value;
+        nCharacter_ = value;
       }
     }
 
@@ -2503,7 +2540,7 @@ namespace Proto {
         return true;
       }
       if (Success != other.Success) return false;
-      if (!object.Equals(Character, other.Character)) return false;
+      if (!object.Equals(NCharacter, other.NCharacter)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2512,7 +2549,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (Success != false) hash ^= Success.GetHashCode();
-      if (character_ != null) hash ^= Character.GetHashCode();
+      if (nCharacter_ != null) hash ^= NCharacter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2535,9 +2572,9 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteBool(Success);
       }
-      if (character_ != null) {
+      if (nCharacter_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Character);
+        output.WriteMessage(NCharacter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -2553,9 +2590,9 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteBool(Success);
       }
-      if (character_ != null) {
+      if (nCharacter_ != null) {
         output.WriteRawTag(18);
-        output.WriteMessage(Character);
+        output.WriteMessage(NCharacter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -2570,8 +2607,8 @@ namespace Proto {
       if (Success != false) {
         size += 1 + 1;
       }
-      if (character_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Character);
+      if (nCharacter_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NCharacter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2588,11 +2625,11 @@ namespace Proto {
       if (other.Success != false) {
         Success = other.Success;
       }
-      if (other.character_ != null) {
-        if (character_ == null) {
-          Character = new global::Proto.NCharacter();
+      if (other.nCharacter_ != null) {
+        if (nCharacter_ == null) {
+          NCharacter = new global::Proto.NCharacter();
         }
-        Character.MergeFrom(other.Character);
+        NCharacter.MergeFrom(other.NCharacter);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2618,10 +2655,10 @@ namespace Proto {
             break;
           }
           case 18: {
-            if (character_ == null) {
-              Character = new global::Proto.NCharacter();
+            if (nCharacter_ == null) {
+              NCharacter = new global::Proto.NCharacter();
             }
-            input.ReadMessage(Character);
+            input.ReadMessage(NCharacter);
             break;
           }
         }
@@ -2648,10 +2685,10 @@ namespace Proto {
             break;
           }
           case 18: {
-            if (character_ == null) {
-              Character = new global::Proto.NCharacter();
+            if (nCharacter_ == null) {
+              NCharacter = new global::Proto.NCharacter();
             }
-            input.ReadMessage(Character);
+            input.ReadMessage(NCharacter);
             break;
           }
         }
@@ -2697,7 +2734,7 @@ namespace Proto {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public SpaceCharactersEnterResponse(SpaceCharactersEnterResponse other) : this() {
       spaceId_ = other.spaceId_;
-      characters_ = other.characters_.Clone();
+      nCharacters_ = other.nCharacters_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2719,15 +2756,15 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "characters" field.</summary>
-    public const int CharactersFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::Proto.NCharacter> _repeated_characters_codec
+    /// <summary>Field number for the "nCharacters" field.</summary>
+    public const int NCharactersFieldNumber = 2;
+    private static readonly pb::FieldCodec<global::Proto.NCharacter> _repeated_nCharacters_codec
         = pb::FieldCodec.ForMessage(18, global::Proto.NCharacter.Parser);
-    private readonly pbc::RepeatedField<global::Proto.NCharacter> characters_ = new pbc::RepeatedField<global::Proto.NCharacter>();
+    private readonly pbc::RepeatedField<global::Proto.NCharacter> nCharacters_ = new pbc::RepeatedField<global::Proto.NCharacter>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::Proto.NCharacter> Characters {
-      get { return characters_; }
+    public pbc::RepeatedField<global::Proto.NCharacter> NCharacters {
+      get { return nCharacters_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2746,7 +2783,7 @@ namespace Proto {
         return true;
       }
       if (SpaceId != other.SpaceId) return false;
-      if(!characters_.Equals(other.characters_)) return false;
+      if(!nCharacters_.Equals(other.nCharacters_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2755,7 +2792,7 @@ namespace Proto {
     public override int GetHashCode() {
       int hash = 1;
       if (SpaceId != 0) hash ^= SpaceId.GetHashCode();
-      hash ^= characters_.GetHashCode();
+      hash ^= nCharacters_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2778,7 +2815,7 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteInt32(SpaceId);
       }
-      characters_.WriteTo(output, _repeated_characters_codec);
+      nCharacters_.WriteTo(output, _repeated_nCharacters_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2793,7 +2830,7 @@ namespace Proto {
         output.WriteRawTag(8);
         output.WriteInt32(SpaceId);
       }
-      characters_.WriteTo(ref output, _repeated_characters_codec);
+      nCharacters_.WriteTo(ref output, _repeated_nCharacters_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2807,7 +2844,7 @@ namespace Proto {
       if (SpaceId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(SpaceId);
       }
-      size += characters_.CalculateSize(_repeated_characters_codec);
+      size += nCharacters_.CalculateSize(_repeated_nCharacters_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -2823,7 +2860,7 @@ namespace Proto {
       if (other.SpaceId != 0) {
         SpaceId = other.SpaceId;
       }
-      characters_.Add(other.characters_);
+      nCharacters_.Add(other.nCharacters_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -2848,7 +2885,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            characters_.AddEntriesFrom(input, _repeated_characters_codec);
+            nCharacters_.AddEntriesFrom(input, _repeated_nCharacters_codec);
             break;
           }
         }
@@ -2875,7 +2912,7 @@ namespace Proto {
             break;
           }
           case 18: {
-            characters_.AddEntriesFrom(ref input, _repeated_characters_codec);
+            nCharacters_.AddEntriesFrom(ref input, _repeated_nCharacters_codec);
             break;
           }
         }
@@ -4717,7 +4754,7 @@ namespace Proto {
     public CharacterCreateResponse(CharacterCreateResponse other) : this() {
       success_ = other.success_;
       message_ = other.message_;
-      character_ = other.character_ != null ? other.character_.Clone() : null;
+      nCharacter_ = other.nCharacter_ != null ? other.nCharacter_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -4751,15 +4788,15 @@ namespace Proto {
       }
     }
 
-    /// <summary>Field number for the "character" field.</summary>
-    public const int CharacterFieldNumber = 3;
-    private global::Proto.NCharacter character_;
+    /// <summary>Field number for the "nCharacter" field.</summary>
+    public const int NCharacterFieldNumber = 3;
+    private global::Proto.NCharacter nCharacter_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::Proto.NCharacter Character {
-      get { return character_; }
+    public global::Proto.NCharacter NCharacter {
+      get { return nCharacter_; }
       set {
-        character_ = value;
+        nCharacter_ = value;
       }
     }
 
@@ -4780,7 +4817,7 @@ namespace Proto {
       }
       if (Success != other.Success) return false;
       if (Message != other.Message) return false;
-      if (!object.Equals(Character, other.Character)) return false;
+      if (!object.Equals(NCharacter, other.NCharacter)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -4790,7 +4827,7 @@ namespace Proto {
       int hash = 1;
       if (Success != false) hash ^= Success.GetHashCode();
       if (Message.Length != 0) hash ^= Message.GetHashCode();
-      if (character_ != null) hash ^= Character.GetHashCode();
+      if (nCharacter_ != null) hash ^= NCharacter.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -4817,9 +4854,9 @@ namespace Proto {
         output.WriteRawTag(18);
         output.WriteString(Message);
       }
-      if (character_ != null) {
+      if (nCharacter_ != null) {
         output.WriteRawTag(26);
-        output.WriteMessage(Character);
+        output.WriteMessage(NCharacter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -4839,9 +4876,9 @@ namespace Proto {
         output.WriteRawTag(18);
         output.WriteString(Message);
       }
-      if (character_ != null) {
+      if (nCharacter_ != null) {
         output.WriteRawTag(26);
-        output.WriteMessage(Character);
+        output.WriteMessage(NCharacter);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -4859,8 +4896,8 @@ namespace Proto {
       if (Message.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Message);
       }
-      if (character_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Character);
+      if (nCharacter_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NCharacter);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -4880,11 +4917,11 @@ namespace Proto {
       if (other.Message.Length != 0) {
         Message = other.Message;
       }
-      if (other.character_ != null) {
-        if (character_ == null) {
-          Character = new global::Proto.NCharacter();
+      if (other.nCharacter_ != null) {
+        if (nCharacter_ == null) {
+          NCharacter = new global::Proto.NCharacter();
         }
-        Character.MergeFrom(other.Character);
+        NCharacter.MergeFrom(other.NCharacter);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -4914,10 +4951,10 @@ namespace Proto {
             break;
           }
           case 26: {
-            if (character_ == null) {
-              Character = new global::Proto.NCharacter();
+            if (nCharacter_ == null) {
+              NCharacter = new global::Proto.NCharacter();
             }
-            input.ReadMessage(Character);
+            input.ReadMessage(NCharacter);
             break;
           }
         }
@@ -4948,10 +4985,10 @@ namespace Proto {
             break;
           }
           case 26: {
-            if (character_ == null) {
-              Character = new global::Proto.NCharacter();
+            if (nCharacter_ == null) {
+              NCharacter = new global::Proto.NCharacter();
             }
-            input.ReadMessage(Character);
+            input.ReadMessage(NCharacter);
             break;
           }
         }

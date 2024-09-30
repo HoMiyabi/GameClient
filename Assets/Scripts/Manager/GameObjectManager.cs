@@ -19,7 +19,6 @@ namespace Manager
             var gameEntity = other.GetComponent<GameEntity>();
             if (gameEntity != null)
             {
-                gameEntity.isMine = false;
                 gameEntity.Set(nCharacter.NEntity);
                 gameEntity.SyncToTransform();
             }
@@ -42,13 +41,11 @@ namespace Manager
             hero.name = $"Character Player EntityId={nCharacter.NEntity.EntityId}";
             hero.layer = LayerMask.NameToLayer("Actor");
 
-            var gameEntity = hero.GetComponent<GameEntity>();
-            if (gameEntity != null)
+            var playerEntity = hero.GetComponent<PlayerEntity>();
+            if (playerEntity != null)
             {
-                gameEntity.isMine = true;
-                gameEntity.Set(nCharacter.NEntity);
-                gameEntity.SyncToTransform();
-                gameEntity.SyncRequestAsync().Forget();
+                playerEntity.Set(nCharacter.NEntity);
+                playerEntity.StartSendSyncRequestAsync().Forget();
             }
 
             var textPrefab = Resources.Load<Transform>("Prefabs/WorldHeadText");

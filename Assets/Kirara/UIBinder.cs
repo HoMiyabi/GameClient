@@ -39,10 +39,12 @@ namespace Kirara
 #if UNITY_EDITOR
         [SerializeField]
         private MonoBehaviour ui;
+
         [SerializeField]
         private string outputPath = "Scripts/Generated";
 
-        public List<Item> nameTypeComList;
+        [SerializeField]
+        private List<Item> nameTypeComList;
 
         [Serializable]
         public class Item
@@ -86,20 +88,26 @@ namespace Kirara
             {"input", typeof(InputField)},
             {"text", typeof(Text)},
             {"img", typeof(Image)},
-            {"tra", typeof(Transform)}
+            {"tra", typeof(Transform)},
+            {"dd", typeof(Dropdown)},
         };
 
         public void EditorGenerateUI()
         {
-            nameTypeComList ??= new();
+            if (ui == null)
+            {
+                Debug.LogWarning("ui == null");
+                return;
+            }
+            nameTypeComList ??= new List<Item>();
             nameTypeComList.Clear();
 
-            fieldNameSet ??= new();
+            fieldNameSet ??= new HashSet<string>();
             fieldNameSet.Clear();
 
             Scan(transform);
             
-            Type type = ui.GetType();
+            var type = ui.GetType();
             string classNamespace = type.Namespace;
             string className = type.Name;
             string classFullName = type.FullName;
@@ -201,10 +209,15 @@ namespace Kirara
 
         public void EditorBindUI()
         {
-            Type type = ui.GetType();
+            var type = ui.GetType();
             foreach (var (fieldName, _, com) in nameTypeComList)
             {
                 var fieldInfo = type.GetField(fieldName);
+                if (fieldInfo == null)
+                {
+                    Debug.LogWarning($"{type.FullName}不存在字段{fieldName}");
+                    return;
+                }
                 fieldInfo.SetValue(ui, com);
             }
 

@@ -13,7 +13,7 @@ namespace Kirara
         {
             if (action == null) return;
 
-            if (mainThreadId == Environment.CurrentManagedThreadId)
+            if (Environment.CurrentManagedThreadId == mainThreadId)
             {
                 action();
             }

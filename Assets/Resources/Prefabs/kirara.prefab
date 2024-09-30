@@ -74,10 +74,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c76f4fd4bc8c86e44b996f732b04c638,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 457569801110806910}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c76f4fd4bc8c86e44b996f732b04c638,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: -7996916285300621264}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c76f4fd4bc8c86e44b996f732b04c638,
         type: 3}
@@ -91,6 +87,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8990482203932628675}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c76f4fd4bc8c86e44b996f732b04c638,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1806987245743584101}
   m_SourcePrefab: {fileID: 100100000, guid: c76f4fd4bc8c86e44b996f732b04c638, type: 3}
 --- !u!1 &1003970023171739884 stripped
 GameObject:
@@ -119,22 +119,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &457569801110806910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1003970023171739884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf53b0c8ce533d944b5f48259744def1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityId: 0
-  position: {x: 0, y: 0, z: 0}
-  direction: {x: 0, y: 0, z: 0}
-  isMine: 0
 --- !u!114 &-7996916285300621264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,3 +200,16 @@ CharacterController:
   m_SkinWidth: 0.025
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &-1806987245743584101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003970023171739884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02d63c8c5aa480299cc3f0bce4393e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityId: 0

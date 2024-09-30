@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Diagnostics;
 using Cysharp.Threading.Tasks;
 using Kirara;
 using Manager;
@@ -7,12 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Proto;
 using UnityEngine.SceneManagement;
-using Debug = UnityEngine.Debug;
 
 public class NetStart : MonoSingleton<NetStart>
 {
-    public List<GameObject> keepAlive;
-
     [Header("服务器信息")]
     public string host = "127.0.0.1";
     public int port = 32510;
@@ -21,15 +16,7 @@ public class NetStart : MonoSingleton<NetStart>
 
     public Transform canvas;
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        foreach (GameObject go in keepAlive)
-        {
-            DontDestroyOnLoad(go);
-        }
-    }
+    public GameInfo gameInfo;
 
     private void Connect()
     {
@@ -42,7 +29,6 @@ public class NetStart : MonoSingleton<NetStart>
     void Start()
     {
         // Debug.Log($"MainThreadId={Thread.CurrentThread.ManagedThreadId}");
-        Application.targetFrameRate = 90;
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Actor"), LayerMask.NameToLayer("Actor"), true);
 
         MessageRouter.Instance.Subscribe<GameEnterResponse>(OnGameEnterResponse);
@@ -50,8 +36,6 @@ public class NetStart : MonoSingleton<NetStart>
         MessageRouter.Instance.Subscribe<SpaceEntitySyncResponse>(OnSpaceEntitySyncResponse);
         MessageRouter.Instance.Subscribe<HeartBeatResponse>(OnHeartBeatResponse);
         MessageRouter.Instance.Subscribe<SpaceCharacterLeaveResponse>(OnSpaceCharacterLeaveResponse);
-
-        SceneManager.LoadScene("LoginScene");
 
         Connect();
     }
@@ -65,12 +49,11 @@ public class NetStart : MonoSingleton<NetStart>
         long ms = heartBeatStopwatch.ElapsedMilliseconds;
         MainThread.Instance.Enqueue(() =>
         {
-            networkLatencyText.text = $"{ms} ms";
-            networkLatencyText.color = (ms < 100) ? Color.green : Color.red;
+            gameInfo.SetNetworkLatency(ms);
         });
     }
 
-    private Stopwatch heartBeatStopwatch = new();
+    private System.Diagnostics.Stopwatch heartBeatStopwatch = new();
 
     private async UniTaskVoid SendHeartBeatMessage()
     {
@@ -87,8 +70,8 @@ public class NetStart : MonoSingleton<NetStart>
     // 收到角色的同步信息
     private void OnSpaceEntitySyncResponse(Connection sender, SpaceEntitySyncResponse message)
     {
-        var entity = message.EntitySync.Entity;
-        MainThread.Instance.Enqueue(() => EntityManager.Instance.SyncEntity(entity));
+        var entitySync = message.EntitySync;
+        MainThread.Instance.Enqueue(() => EntityManager.Instance.SyncEntity(entitySync));
     }
 
     // 加入游戏的响应结果 Entity肯定是自己
@@ -102,7 +85,7 @@ public class NetStart : MonoSingleton<NetStart>
 
         Debug.Log("自己进入地图 " + message);
 
-        var character = message.Character;
+        var character = message.NCharacter;
         MainThread.Instance.Enqueue(() =>
         {
             GameObjectManager.Instance.CreatePlayer(character);
@@ -114,11 +97,11 @@ public class NetStart : MonoSingleton<NetStart>
     private void OnSpaceCharactersEnterResponse(Connection conn, SpaceCharactersEnterResponse message)
     {
         Debug.Log("其他人进入地图 " + message);
-        var characters = message.Characters;
+        var nCharacters = message.NCharacters;
 
         MainThread.Instance.Enqueue(() =>
         {
-            foreach (var nCharacter in characters)
+            foreach (var nCharacter in nCharacters)
             {
                 GameObjectManager.Instance.CreateCharacterObject(nCharacter);
             }
