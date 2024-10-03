@@ -6,18 +6,23 @@ using UnityEngine;
 public class DefineManager : Singleton<DefineManager>
 {
     public Dictionary<int, SpaceDefine> spaceDefineDict;
+    public Dictionary<int, UnitDefine> unitDefineDict;
+
     public DefineManager()
     {
-        string json = Resources.Load<TextAsset>("Data/SpaceDefine").text;
-        spaceDefineDict = JsonConvert.DeserializeObject<Dictionary<int, SpaceDefine>>(json);
+        spaceDefineDict = Load<SpaceDefine>("Define/SpaceDefine.json");
+        unitDefineDict = Load<UnitDefine>("Define/UnitDefine.json");
     }
-}
 
-public class SpaceDefine
-{
-    public int SID; // 场景编号
-    public string Name; // 名称
-    public string Resource; // 资源
-    public string Kind; // 类型
-    public int AllowPK; // 允许PK（1允许，0不允许）
+    private static string LoadFile(string filePath)
+    {
+        string text = Resources.Load<TextAsset>(filePath).text;
+        return text;
+    }
+
+    private static Dictionary<int, T> Load<T>(string filePath)
+    {
+        string json = LoadFile(filePath);
+        return JsonConvert.DeserializeObject<Dictionary<int, T>>(json);
+    }
 }

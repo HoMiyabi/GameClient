@@ -21,7 +21,7 @@ public class HeroAnimations : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void SetAllFalse()

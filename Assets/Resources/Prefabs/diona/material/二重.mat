@@ -121,7 +121,7 @@ Material:
     - _Glossiness: 1
     - _GlossyReflections: 1
     - _IndirectLightMultiplier: 1
-    - _IsFace: 0
+    - _IsFace: 1
     - _MainLightIgnoreCelShade: 0
     - _Metallic: 0
     - _Mode: 0

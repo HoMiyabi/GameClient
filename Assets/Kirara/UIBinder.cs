@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -22,11 +22,11 @@ namespace Kirara
             var script = (UIBinder)target;
             if (GUILayout.Button("生成"))
             {
-                script.EditorGenerateUI();
+                script.GenerateUI();
             }
             if (GUILayout.Button("绑定"))
             {
-                script.EditorBindUI();
+                script.BindUI();
             }
             base.OnInspectorGUI();
         }
@@ -80,19 +80,19 @@ namespace Kirara
         private const string nsHeaderFormat = "namespace {0}\n";
         private const string classHeaderFormat = "public partial class {0}\n";
 
-        private const string accessModifier = "public";
+        private const string fieldAccessModifier = "public";
 
-        private Dictionary<string, Type> identifierToType = new Dictionary<string, Type>()
+        private Dictionary<string, Type> identifierToType = new Dictionary<string, Type>
         {
-            {"btn", typeof(Button)},
-            {"input", typeof(InputField)},
-            {"text", typeof(Text)},
-            {"img", typeof(Image)},
+            {"btn", typeof(UnityEngine.UI.Button)},
+            {"input", typeof(UnityEngine.UI.InputField)},
+            {"text", typeof(UnityEngine.UI.Text)},
+            {"img", typeof(UnityEngine.UI.Image)},
             {"tra", typeof(Transform)},
-            {"dd", typeof(Dropdown)},
+            {"dd", typeof(UnityEngine.UI.Dropdown)},
         };
 
-        public void EditorGenerateUI()
+        public void GenerateUI()
         {
             if (ui == null)
             {
@@ -148,7 +148,7 @@ namespace Kirara
             foreach (var (fieldName, comTypeFullName, _) in nameTypeComList)
             {
                 sb.Append(nsIndent + classIndent);
-                sb.Append(accessModifier);
+                sb.Append(fieldAccessModifier);
                 sb.Append(' ');
                 sb.Append(comTypeFullName);
                 sb.Append(' ');
@@ -207,7 +207,7 @@ namespace Kirara
             }
         }
 
-        public void EditorBindUI()
+        public void BindUI()
         {
             var type = ui.GetType();
             foreach (var (fieldName, _, com) in nameTypeComList)
