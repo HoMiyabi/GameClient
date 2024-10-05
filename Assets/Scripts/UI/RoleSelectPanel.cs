@@ -102,7 +102,7 @@ public partial class RoleSelectPanel : UIBase
         characterInfos.Clear();
         foreach (var c in message.NCharacters)
         {
-            characterInfos.Add(new CharacterInfo() {name = c.Name, jobId = c.JobId, level = c.Level, id = c.Id});
+            characterInfos.Add(new CharacterInfo() {name = c.Name, jobId = c.Tid, level = c.Level, id = c.Id});
         }
 
         MainThread.Instance.Enqueue(() =>

@@ -19,72 +19,32 @@ public class HeroAnimations : MonoBehaviour
 
     public HState state = HState.Idle;
 
-    private void Awake()
+    private void Start()
     {
         animator = GetComponentInChildren<Animator>();
     }
 
-    private void SetAllFalse()
-    {
-        animator.SetBool("idle", false);
-        animator.SetBool("run", false);
-        animator.SetBool("attack1", false);
-        animator.SetBool("die", false);
-        animator.SetBool("gethit", false);
-    }
-
-    public void PlayIdle()
-    {
-        if (state is HState.Attack or HState.Gethit)
-        {
-            return;
-        }
-        SetAllFalse();
-        animator.SetBool("idle", true);
-        state = HState.Idle;
-    }
-
     public void PlayRun()
     {
-        if (state == HState.Attack)
-        {
-            return;
-        }
-        SetAllFalse();
-        animator.SetBool("run", true);
+        animator.SetBool("Run", true);
         state = HState.Run;
     }
 
-    public void PlayAttack1()
+    public void PlayAttack()
     {
-        SetAllFalse();
-        animator.SetBool("attack1", true);
+        animator.SetTrigger("Attack");
         state = HState.Attack;
     }
 
     public void PlayDie()
     {
-        SetAllFalse();
-        animator.SetBool("die", true);
+        animator.SetTrigger("Die");
         state = HState.Die;
     }
 
-    public void PlayGethit()
+    public void PlayGetHit()
     {
-        SetAllFalse();
-        animator.SetBool("gethit", true);
+        animator.SetTrigger("GetHit");
         state = HState.Gethit;
-    }
-
-    public void Attack01End()
-    {
-        state = HState.None;
-        PlayIdle();
-    }
-
-    public void GethitEnd()
-    {
-        state = HState.None;
-        PlayIdle();
     }
 }

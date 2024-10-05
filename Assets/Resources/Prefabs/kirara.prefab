@@ -63,6 +63,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: kirara
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 101bbcb36b1e73441a62ae38bb8573f7,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 199f003fed6682f41a0cb3aba07a1afc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

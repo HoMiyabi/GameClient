@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         if (bAttack)
         {
-            heroAnimations.PlayAttack1();
+            heroAnimations.PlayAttack();
         }
 
         float targetSpeed = normalSpeed;
@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
             transform.DOKill();
             transform.DORotateQuaternion(targetRot, 0.1f);
         }
-        else
-        {
-            heroAnimations.PlayIdle();
-        }
+        // else
+        // {
+        //     heroAnimations.PlayIdle();
+        // }
     }
 }

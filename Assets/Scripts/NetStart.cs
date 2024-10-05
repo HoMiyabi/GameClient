@@ -89,7 +89,7 @@ public class NetStart : MonoSingleton<NetStart>
         MainThread.Instance.Enqueue(() =>
         {
             GameObjectManager.Instance.CreatePlayer(character);
-            SceneManager.LoadScene(DefineManager.Instance.spaceDefineDict[character.SpaceId].Resource);
+            SceneManager.LoadScene(DefineManager.Instance.SIDToSpaceDefine[character.SpaceId].Resource);
         });
     }
 

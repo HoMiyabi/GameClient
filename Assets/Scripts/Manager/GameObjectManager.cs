@@ -7,13 +7,30 @@ namespace Manager
 {
     public class GameObjectManager : Singleton<GameObjectManager>
     {
+        public void CreateMonster(NMonster nMonster)
+        {
+            var monsterRoot = Object.Instantiate(Resources.Load<GameObject>("Prefabs/MonsterRoot"));
+
+            int tid = nMonster.Tid;
+            Object.Instantiate(
+                Resources.Load<GameObject>(DefineManager.Instance.TIDToUnitDefine[tid].Resource),
+                monsterRoot.transform);
+
+            EntityManager.Instance.entityIdToGO.Add(nMonster.NEntity.EntityId, monsterRoot);
+
+            monsterRoot.name = $"Monster {nMonster.Name} {nMonster.NEntity.EntityId}";
+            monsterRoot.transform.position = nMonster.NEntity.Position.Native();
+
+            Object.DontDestroyOnLoad(monsterRoot);
+        }
+
         public void CreateCharacterObject(NCharacter nCharacter)
         {
             var prefab = Resources.Load<GameObject>("Prefabs/diona");
             var other = Object.Instantiate(prefab);
             EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, other);
 
-            other.name = $"Other Player EntityId={nCharacter.NEntity.EntityId}";
+            other.name = $"Character Other EntityId={nCharacter.NEntity.EntityId}";
             other.layer = LayerMask.NameToLayer("Actor");
 
             var gameEntity = other.GetComponent<GameEntity>();
@@ -33,15 +50,16 @@ namespace Manager
 
         public void CreatePlayer(NCharacter nCharacter)
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/kirara");
+            var playerRoot = Object.Instantiate(Resources.Load<GameObject>("Prefabs/PlayerRoot"));
 
-            var hero = Object.Instantiate(prefab);
-            EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, hero);
+            Object.Instantiate(Resources.Load<GameObject>("Prefabs/kirara"), playerRoot.transform);
 
-            hero.name = $"Character Player EntityId={nCharacter.NEntity.EntityId}";
-            hero.layer = LayerMask.NameToLayer("Actor");
+            EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, playerRoot);
 
-            var playerEntity = hero.GetComponent<PlayerEntity>();
+            playerRoot.name = $"Character Player EntityId={nCharacter.NEntity.EntityId}";
+            playerRoot.layer = LayerMask.NameToLayer("Actor");
+
+            var playerEntity = playerRoot.GetComponent<PlayerEntity>();
             if (playerEntity != null)
             {
                 playerEntity.Set(nCharacter.NEntity);
@@ -50,10 +68,10 @@ namespace Manager
 
             var textPrefab = Resources.Load<Transform>("Prefabs/WorldHeadText");
             var text = Object.Instantiate(textPrefab, GameManager.Instance.worldCanvas.transform);
-            text.GetComponent<WorldHeadText>().follow = hero.transform;
+            text.GetComponent<WorldHeadText>().follow = playerRoot.transform;
             text.GetComponent<Text>().text = nCharacter.Name;
 
-            Object.DontDestroyOnLoad(hero);
+            Object.DontDestroyOnLoad(playerRoot);
         }
     }
 }
