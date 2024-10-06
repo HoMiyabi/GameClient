@@ -53,7 +53,7 @@ public partial class RoleSelectPanel : UIBase
             return;
         }
         int index = choiceGroup.chosenIndex;
-        print("进入游戏" + characterInfos[index].name);
+        print("进入游戏 " + characterInfos[index].name);
         NetFn.EnterGame(characterInfos[index].id);
     }
 

@@ -59,6 +59,7 @@ public class NetStart : MonoSingleton<NetStart>
     {
         HeartBeatRequest request = new();
 
+        // todo)) 断开后就不要发了
         while (true)
         {
             await UniTask.WaitForSeconds(1.0f);

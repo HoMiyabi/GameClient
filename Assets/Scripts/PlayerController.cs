@@ -21,11 +21,17 @@ public class PlayerController : MonoBehaviour
 
     public float jumpSpeed = 8f;
 
+    public float gravity = 9.8f;
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         heroAnimations = GetComponent<HeroAnimations>();
         input = new InputControls();
+        input.Player.Attack.started += context =>
+        {
+            heroAnimations.PlayAttack();
+        };
     }
 
     private void OnEnable()
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            verticalVelocity += -9.8f * Time.deltaTime;
+            verticalVelocity += -gravity * Time.deltaTime;
             verticalVelocity = Mathf.Max(verticalVelocity, verticalVelocityMin);
         }
     }
@@ -65,14 +71,8 @@ public class PlayerController : MonoBehaviour
 
         // Input
         bool bSpeedUp = input.Player.SpeedUp.IsPressed();
-        bool bAttack = input.Player.Attack.IsPressed();
         Vector2 inputMove = input.Player.Move.ReadValue<Vector2>();
         Vector3 localMove = new Vector3(inputMove.x, 0f, inputMove.y);
-
-        if (bAttack)
-        {
-            heroAnimations.PlayAttack();
-        }
 
         float targetSpeed = normalSpeed;
         if (bSpeedUp)
@@ -98,9 +98,9 @@ public class PlayerController : MonoBehaviour
             transform.DOKill();
             transform.DORotateQuaternion(targetRot, 0.1f);
         }
-        // else
-        // {
-        //     heroAnimations.PlayIdle();
-        // }
+        else
+        {
+            heroAnimations.animator.SetBool("Run", false);
+        }
     }
 }

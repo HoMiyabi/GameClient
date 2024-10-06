@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HeroAnimations : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
 
     public enum HState
     {
