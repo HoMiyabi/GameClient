@@ -51,6 +51,6 @@ public class LoginPanel : UIBase
             Username = username,
             Password = password,
         };
-        NetClient.Send(request);
+        NetClient.conn.Send(request);
     }
 }

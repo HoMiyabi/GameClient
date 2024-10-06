@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using Kirara;
 using Manager;
@@ -47,6 +48,7 @@ public class NetStart : MonoSingleton<NetStart>
     private void OnHeartBeatResponse(Connection sender, HeartBeatResponse message)
     {
         long ms = heartBeatStopwatch.ElapsedMilliseconds;
+        // Debug.Log($"接收 {DateTime.UtcNow:HH:mm:ss.fff} {ms}ms");
         MainThread.Instance.Enqueue(() =>
         {
             gameInfo.SetNetworkLatency(ms);
@@ -57,14 +59,15 @@ public class NetStart : MonoSingleton<NetStart>
 
     private async UniTaskVoid SendHeartBeatMessage()
     {
-        HeartBeatRequest request = new();
+        byte[] requestBytes = Connection.GetSendBytes(new HeartBeatRequest());
 
         // todo)) 断开后就不要发了
         while (true)
         {
             await UniTask.WaitForSeconds(1.0f);
             heartBeatStopwatch.Restart();
-            NetClient.Send(request);
+            // Debug.Log($"发送 {DateTime.UtcNow:HH:mm:ss.fff}");
+            NetClient.conn.SendBytes(requestBytes);
         }
     }
 

@@ -40,7 +40,7 @@ public partial class RoleSelectPanel : UIBase
                 {
                     CharacterId = role.id,
                 };
-                NetClient.Send(request);
+                NetClient.conn.Send(request);
                 dialog.Close();
             }).transform)
             .Show();
@@ -88,13 +88,13 @@ public partial class RoleSelectPanel : UIBase
         MessageRouter.Instance.Subscribe<CharacterDeleteResponse>(OnCharacterDeleteResponse);
 
         var request = new CharacterListRequest();
-        NetClient.Send(request);
+        NetClient.conn.Send(request);
     }
 
     private void OnCharacterDeleteResponse(Connection sender, CharacterDeleteResponse message)
     {
         var request = new CharacterListRequest();
-        NetClient.Send(request);
+        NetClient.conn.Send(request);
     }
 
     private void OnCharacterListResponse(Connection sender, CharacterListResponse message)

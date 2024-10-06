@@ -13,15 +13,7 @@ using Kirara;
 /// </summary>
 public class NetClient
 {
-    private static Connection conn = null;
-
-    public static void Send(IMessage message)
-    {
-        if(conn != null)
-        {
-            conn.Send(message);
-        }
-    }
+    public static Connection conn = null;
 
     /// <summary>
     /// 连接到服务器

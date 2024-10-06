@@ -20,7 +20,7 @@ public class GameManager : MonoSingleton<GameManager>
             DontDestroyOnLoad(go);
         }
 
-        Application.targetFrameRate = 90;
+        Application.targetFrameRate = 500;
     }
 
     private void Start()

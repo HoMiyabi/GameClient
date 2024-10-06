@@ -25,7 +25,7 @@ public partial class RoleCreatePanel : UIBase
             Name = inputRoleName.text,
             JobId = choiceGroup.chosenIndex + 1,
         };
-        NetClient.Send(request);
+        NetClient.conn.Send(request);
     }
 
     private void Start()
@@ -64,7 +64,7 @@ public partial class RoleCreatePanel : UIBase
         if (message.Success)
         {
             var request = new CharacterListRequest();
-            NetClient.Send(request);
+            NetClient.conn.Send(request);
         }
     }
 }

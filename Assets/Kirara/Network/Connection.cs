@@ -34,7 +34,7 @@ namespace Kirara
             socket.Close();
         }
 
-        public void Send(IMessage message)
+        public static byte[] GetSendBytes(IMessage message)
         {
             var packet = new Packet()
             {
@@ -51,7 +51,19 @@ namespace Kirara
             }
             packet.WriteTo(new Span<byte>(sendBytes, sizeof(int), size));
 
-            socket.SendAsync(sendBytes, SocketFlags.None, cts.Token);
+            return sendBytes;
+        }
+
+        public void SendBytes(byte[] bytes)
+        {
+            socket.Send(bytes, SocketFlags.None);
+            // socket.SendAsync(bytes, SocketFlags.None, cts.Token);
+        }
+
+        public void Send(IMessage message)
+        {
+            byte[] sendBytes = GetSendBytes(message);
+            SendBytes(sendBytes);
         }
 
         private async UniTask Receive(CancellationToken token)

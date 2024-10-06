@@ -31,7 +31,7 @@ public class PlayerEntity : MonoBehaviour
             {
                 request.EntitySync.NEntity.Position.Set(transform.position);
                 request.EntitySync.NEntity.Direction.Set(transform.rotation.eulerAngles);
-                NetClient.Send(request);
+                NetClient.conn.Send(request);
                 transform.hasChanged = false;
             }
         }

@@ -8,6 +8,6 @@ public static class NetFn
         {
             CharacterId = characterId,
         };
-        NetClient.Send(request);
+        NetClient.conn.Send(request);
     }
 }
