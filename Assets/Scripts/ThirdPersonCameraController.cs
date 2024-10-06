@@ -13,8 +13,8 @@ public class ThirdPersonCameraController : MonoBehaviour
     [Header("距离")]
     public float targetDistance = 4f;
     public float curDistance = 4f;
-    public float minDistance = 0.5f;
-    public float maxDistance = 7.5f;
+    public float minDistance = 1f;
+    public float maxDistance = 7f;
     public float distanceAdjustStep = 0.5f;
     public float distanceAdjustSpeed = 15f;
 

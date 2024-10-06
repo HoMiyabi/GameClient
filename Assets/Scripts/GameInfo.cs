@@ -77,4 +77,10 @@ public partial class GameInfo : MonoBehaviour
             textFrameRate.color = Color.green;
         }
     }
+
+    private void Update()
+    {
+        float fps = 1.0f / Time.unscaledDeltaTime;
+        EnqueueFrameRate(fps);
+    }
 }

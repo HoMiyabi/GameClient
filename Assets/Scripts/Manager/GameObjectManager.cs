@@ -24,17 +24,19 @@ namespace Manager
             Object.DontDestroyOnLoad(monsterRoot);
         }
 
-        public void CreateCharacterObject(NCharacter nCharacter)
+        public void CreateCharacterOther(NCharacter nCharacter)
         {
-            var prefab = Resources.Load<GameObject>("Prefabs/diona");
-            var other = Object.Instantiate(prefab);
-            EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, other);
+            var otherRoot = Object.Instantiate(Resources.Load<GameObject>("Prefabs/OtherRoot"));
 
-            other.name = $"Character Other EntityId={nCharacter.NEntity.EntityId}";
-            other.layer = LayerMask.NameToLayer("Actor");
+            var otherPrefabPath = "Prefabs/diona";
 
-            var gameEntity = other.GetComponent<GameEntity>();
-            if (gameEntity != null)
+            Object.Instantiate(Resources.Load<GameObject>(otherPrefabPath), otherRoot.transform);
+            EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, otherRoot);
+
+            otherRoot.name = $"Character Other EntityId={nCharacter.NEntity.EntityId}";
+            otherRoot.layer = LayerMask.NameToLayer("Actor");
+
+            if (otherRoot.TryGetComponent<GameEntity>(out var gameEntity))
             {
                 gameEntity.Set(nCharacter.NEntity);
                 gameEntity.SyncToTransform();
@@ -42,25 +44,25 @@ namespace Manager
 
             var textPrefab = Resources.Load<Transform>("Prefabs/WorldHeadText");
             var text = Object.Instantiate(textPrefab, GameManager.Instance.worldCanvas.transform);
-            text.GetComponent<WorldHeadText>().follow = other.transform;
+            text.GetComponent<WorldHeadText>().follow = otherRoot.transform;
             text.GetComponent<Text>().text = nCharacter.Name;
 
-            Object.DontDestroyOnLoad(other);
+            Object.DontDestroyOnLoad(otherRoot);
         }
 
-        public void CreatePlayer(NCharacter nCharacter)
+        public void CreateCharacterPlayer(NCharacter nCharacter)
         {
             var playerRoot = Object.Instantiate(Resources.Load<GameObject>("Prefabs/PlayerRoot"));
 
-            Object.Instantiate(Resources.Load<GameObject>("Prefabs/kirara"), playerRoot.transform);
+            string playerPrefabPath = "Prefabs/kirara";
+            Object.Instantiate(Resources.Load<GameObject>(playerPrefabPath), playerRoot.transform);
 
             EntityManager.Instance.entityIdToGO.Add(nCharacter.NEntity.EntityId, playerRoot);
 
             playerRoot.name = $"Character Player EntityId={nCharacter.NEntity.EntityId}";
             playerRoot.layer = LayerMask.NameToLayer("Actor");
 
-            var playerEntity = playerRoot.GetComponent<PlayerEntity>();
-            if (playerEntity != null)
+            if (playerRoot.TryGetComponent<PlayerEntity>(out var playerEntity))
             {
                 playerEntity.Set(nCharacter.NEntity);
                 playerEntity.StartSendSyncRequestAsync().Forget();

@@ -92,7 +92,7 @@ public class NetStart : MonoSingleton<NetStart>
         var character = message.NCharacter;
         MainThread.Instance.Enqueue(() =>
         {
-            GameObjectManager.Instance.CreatePlayer(character);
+            GameObjectManager.Instance.CreateCharacterPlayer(character);
             SceneManager.LoadScene(DefineManager.Instance.SIDToSpaceDefine[character.SpaceId].Resource);
         });
     }
@@ -107,7 +107,7 @@ public class NetStart : MonoSingleton<NetStart>
         {
             foreach (var nCharacter in nCharacters)
             {
-                GameObjectManager.Instance.CreateCharacterObject(nCharacter);
+                GameObjectManager.Instance.CreateCharacterOther(nCharacter);
             }
         });
     }
