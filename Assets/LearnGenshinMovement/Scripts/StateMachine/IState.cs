@@ -1,18 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IState : MonoBehaviour
+namespace Movement
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface IState
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Enter();
+        public void Exit();
+        public void HandleInput();
+        public void Update();
+        public void PhysicsUpdate();
     }
 }
