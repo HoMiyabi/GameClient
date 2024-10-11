@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         input = new InputControls();
         input.Player.Attack.started += context =>
         {
-            heroAnimations.PlayAttack();
+            // heroAnimations.PlayAttack();
         };
     }
 
@@ -71,8 +71,8 @@ public class PlayerController : MonoBehaviour
 
         // Input
         bool bSpeedUp = input.Player.SpeedUp.IsPressed();
-        Vector2 inputMove = input.Player.Move.ReadValue<Vector2>();
-        Vector3 localMove = new Vector3(inputMove.x, 0f, inputMove.y);
+        var inputMove = input.Player.Move.ReadValue<Vector2>();
+        var localMove = new Vector3(inputMove.x, 0f, inputMove.y);
 
         float targetSpeed = normalSpeed;
         if (bSpeedUp)
@@ -82,15 +82,18 @@ public class PlayerController : MonoBehaviour
 
         if (localMove != Vector3.zero)
         {
+            heroAnimations.moveSpeed = localMove.magnitude;
+
             var tpCameraController = GetComponent<ThirdPersonCameraController>();
             var rot = Quaternion.Euler(0f, tpCameraController.yaw, 0f);
             Vector3 wsMove = rot * localMove;
 
-            heroAnimations.PlayRun();
-            if (heroAnimations.state == HeroAnimations.HState.Run)
-            {
-                characterController.Move(targetSpeed * Time.deltaTime * wsMove);
-            }
+            // heroAnimations.PlayRun();
+            // if (heroAnimations.state == HeroAnimations.HState.Run)
+            // {
+            //
+            // }
+            characterController.Move(targetSpeed * Time.deltaTime * wsMove);
 
             // Rotate Player
             Vector3 wsForward = wsMove;
@@ -100,7 +103,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            heroAnimations.animator.SetBool("Run", false);
+            heroAnimations.moveSpeed = 0f;
+            // heroAnimations.animator.SetBool("Run", false);
         }
     }
 }

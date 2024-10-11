@@ -21,6 +21,11 @@ namespace Manager
             monsterRoot.name = $"Monster {nMonster.Name} {nMonster.NEntity.EntityId}";
             monsterRoot.transform.position = nMonster.NEntity.Position.Native();
 
+            var textPrefab = Resources.Load<Transform>("Prefabs/WorldHeadText");
+            var text = Object.Instantiate(textPrefab, GameManager.Instance.worldCanvas.transform);
+            text.GetComponent<WorldHeadText>().follow = monsterRoot.transform;
+            text.GetComponent<Text>().text = nMonster.Name;
+
             Object.DontDestroyOnLoad(monsterRoot);
         }
 

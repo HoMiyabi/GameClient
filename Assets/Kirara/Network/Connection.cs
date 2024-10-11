@@ -56,8 +56,11 @@ namespace Kirara
 
         public void SendBytes(byte[] bytes)
         {
-            socket.Send(bytes, SocketFlags.None);
-            // socket.SendAsync(bytes, SocketFlags.None, cts.Token);
+            try
+            {
+                socket.SendAsync(bytes, SocketFlags.None, cts.Token);
+            }
+            catch (OperationCanceledException) {}
         }
 
         public void Send(IMessage message)
